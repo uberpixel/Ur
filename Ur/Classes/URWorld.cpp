@@ -11,11 +11,25 @@
 namespace UR
 {
 	World::World() :
-		RN::World("OctreeSceneManager")
-	{}
+		RN::World("OctreeSceneManager"),
+		_gamepad(nullptr)
+	{
+		RN::MessageCenter::GetSharedInstance()->AddObserver(kRNInputInputDeviceRegistered, [&](RN::Message *message) {
+			
+			RN::GamepadDevice *device = message->GetObject()->Downcast<RN::GamepadDevice>();
+			if(device)
+			{
+				RN::SafeRelease(_gamepad);
+				_gamepad = device->Retain();
+			}
+
+		}, this);
+	}
 	
 	World::~World()
-	{}
+	{
+		RN::SafeRelease(_gamepad);
+	}
 	
 	void World::LoadOnThread(RN::Thread *thread, RN::Deserializer *deserializer)
 	{

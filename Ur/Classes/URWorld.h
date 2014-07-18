@@ -24,6 +24,7 @@ namespace UR
 		
 	private:
 		RN::Camera *_camera;
+		RN::GamepadDevice *_gamepad;
 	};
 }
 
