@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E851979DB2700113827 /* URApplication.cpp */; };
+		E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E881979DB2700113827 /* URWorld.cpp */; };
+		E9FA6E8D1979DB2700113827 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E8C1979DB2700113827 /* main.cpp */; };
+		E9FA6E901979DB2700113827 /* Ur-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = E9FA6E8F1979DB2700113827 /* Ur-Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E9FA6E811979DB2700113827 /* Ur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ur.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FA6E851979DB2700113827 /* URApplication.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = URApplication.cpp; path = Classes/URApplication.cpp; sourceTree = "<group>"; };
+		E9FA6E871979DB2700113827 /* URApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URApplication.h; path = Classes/URApplication.h; sourceTree = "<group>"; };
+		E9FA6E881979DB2700113827 /* URWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = URWorld.cpp; path = Classes/URWorld.cpp; sourceTree = "<group>"; };
+		E9FA6E8A1979DB2700113827 /* URWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URWorld.h; path = Classes/URWorld.h; sourceTree = "<group>"; };
+		E9FA6E8C1979DB2700113827 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = "Supporting files/main.cpp"; sourceTree = "<group>"; };
+		E9FA6E8E1979DB2700113827 /* Ur-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Ur-Info.plist"; path = "Supporting files/Ur-Info.plist"; sourceTree = "<group>"; };
+		E9FA6E8F1979DB2700113827 /* Ur-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Ur-Prefix.pch"; path = "Supporting files/Ur-Prefix.pch"; sourceTree = "<group>"; };
+		E9FA6E991979DBA100113827 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = Ur/Resources; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E9FA6E7D1979DB2700113827 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E9FA6E771979DB2700113827 = {
+			isa = PBXGroup;
+			children = (
+				E9FA6E841979DB2700113827 /* Classes */,
+				E9FA6E8B1979DB2700113827 /* Supporting files */,
+				E9FA6E991979DBA100113827 /* Resources */,
+				E9FA6E821979DB2700113827 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E9FA6E821979DB2700113827 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9FA6E811979DB2700113827 /* Ur.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9FA6E841979DB2700113827 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E9FA6E851979DB2700113827 /* URApplication.cpp */,
+				E9FA6E871979DB2700113827 /* URApplication.h */,
+				E9FA6E881979DB2700113827 /* URWorld.cpp */,
+				E9FA6E8A1979DB2700113827 /* URWorld.h */,
+			);
+			name = Classes;
+			path = Ur;
+			sourceTree = "<group>";
+		};
+		E9FA6E8B1979DB2700113827 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				E9FA6E8C1979DB2700113827 /* main.cpp */,
+				E9FA6E8E1979DB2700113827 /* Ur-Info.plist */,
+				E9FA6E8F1979DB2700113827 /* Ur-Prefix.pch */,
+			);
+			name = "Supporting files";
+			path = Ur;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E9FA6E7E1979DB2700113827 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9FA6E901979DB2700113827 /* Ur-Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E9FA6E801979DB2700113827 /* Ur */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9FA6E961979DB2700113827 /* Build configuration list for PBXNativeTarget "Ur" */;
+			buildPhases = (
+				E9FA6E7C1979DB2700113827 /* Sources */,
+				E9FA6E7D1979DB2700113827 /* Frameworks */,
+				E9FA6E7E1979DB2700113827 /* Headers */,
+				E9FA6E7F1979DB2700113827 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ur;
+			productName = Ur;
+			productReference = E9FA6E811979DB2700113827 /* Ur.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E9FA6E781979DB2700113827 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Überpixel";
+				TargetAttributes = {
+					E9FA6E801979DB2700113827 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = E9FA6E7B1979DB2700113827 /* Build configuration list for PBXProject "Ur" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E9FA6E771979DB2700113827;
+			productRefGroup = E9FA6E821979DB2700113827 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E9FA6E801979DB2700113827 /* Ur */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E9FA6E7F1979DB2700113827 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "OUTPUT_DIR=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources/\"\nRESOURCES_DIR=\"$PROJECT_DIR/$TARGET_NAME/Resources/\"\n\nrsync -avz \"$RESOURCES_DIR\" \"$OUTPUT_DIR\"\n\t\t\t\t\t";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E9FA6E7C1979DB2700113827 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */,
+				E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */,
+				E9FA6E8D1979DB2700113827 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E9FA6E941979DB2700113827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		E9FA6E951979DB2700113827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		E9FA6E971979DB2700113827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ur/Supporting files/Ur-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include/rayne/,
+				);
+				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/,
+				);
+				OTHER_LDFLAGS = "-lRayne";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E9FA6E981979DB2700113827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ur/Supporting files/Ur-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"NDEBUG=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include/rayne/,
+				);
+				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/,
+				);
+				OTHER_LDFLAGS = "-lRayne";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E9FA6E7B1979DB2700113827 /* Build configuration list for PBXProject "Ur" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9FA6E941979DB2700113827 /* Debug */,
+				E9FA6E951979DB2700113827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9FA6E961979DB2700113827 /* Build configuration list for PBXNativeTarget "Ur" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9FA6E971979DB2700113827 /* Debug */,
+				E9FA6E981979DB2700113827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E9FA6E781979DB2700113827 /* Project object */;
+}
