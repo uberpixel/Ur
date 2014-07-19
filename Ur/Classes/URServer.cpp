@@ -82,7 +82,7 @@ namespace UR
 					
 					Packet handshake(Packet::Type::Handshake);
 					handshake.WriteUInt32(client->clientID);
-					handshake.WriteUInt32(_clients.size());
+					handshake.WriteUInt32(static_cast<uint32>(_clients.size()));
 					
 					for(ConnectedClient *client : _clients)
 					{
@@ -103,6 +103,7 @@ namespace UR
 					switch(packet.GetType())
 					{
 						case Packet::Type::PositionUpdate:
+						case Packet::Type::ShotsFired:
 							BroadcastPacket(packet);
 							break;
 							

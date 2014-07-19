@@ -21,6 +21,8 @@ namespace UR
 	public:
 		Client(uint32 port);
 		
+		static Client *GetLocalClient();
+		
 		void SendPacket(Packet &packet);
 		
 		bool Connect(const std::string &ip);

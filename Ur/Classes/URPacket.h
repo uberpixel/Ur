@@ -18,7 +18,8 @@ namespace UR
 		{
 			Handshake,
 			PositionUpdate,
-			ClientConnected
+			ClientConnected,
+			ShotsFired
 		};
 		
 		Packet(Type type) :
@@ -39,6 +40,14 @@ namespace UR
 		
 		
 		
+		void WriteSInt8(int8 val)
+		{
+			Write<int8>(val);
+		}
+		void WriteUInt8(uint8 val)
+		{
+			Write<uint8>(val);
+		}
 		void WriteSInt32(int32 val)
 		{
 			Write<int32>(val);
@@ -61,6 +70,14 @@ namespace UR
 		}
 		
 		
+		int8 ReadSInt8()
+		{
+			return Read<int8>();
+		}
+		uint8 ReadUInt8()
+		{
+			return Read<uint8>();
+		}
 		int32 ReadSInt32()
 		{
 			return Read<int32>();

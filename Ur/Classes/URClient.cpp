@@ -8,16 +8,26 @@
 
 #include "URClient.h"
 #include "URWorld.h"
+#include "URMissile.h"
 
 namespace UR
 {
+	static Client *_localClient = nullptr;
+	
 	Client::Client(uint32 port) :
 		_port(port),
 		_host(nullptr),
 		_peer(nullptr),
 		_connected(false),
 		_clientID(0)
-	{}
+	{
+		_localClient = this;
+	}
+	
+	Client *Client::GetLocalClient()
+	{
+		return _localClient;
+	}
 	
 	bool Client::Connect(const std::string &ip)
 	{
@@ -87,6 +97,18 @@ namespace UR
 							{
 								Enemy *enemy = World::GetSharedInstance()->GetEnemyWithID(client);
 								enemy->UpdateFromPacket(packet);
+							}
+							
+							break;
+						}
+							
+						case Packet::Type::ShotsFired:
+						{
+							uint32 client = packet.ReadUInt32();
+							
+							if(client != _clientID)
+							{
+								new Missile(client, packet);
 							}
 							
 							break;

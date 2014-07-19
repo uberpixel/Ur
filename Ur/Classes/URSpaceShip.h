@@ -25,7 +25,9 @@ namespace UR
 		void SetGamepad(RN::GamepadDevice *gamepad);
 		
 		float GetSpeed() const;
+		uint32 GetHealth() const { return _health; }
 		
+		void Reset();
 		void Update(float delta) override;
 		
 	private:
@@ -37,7 +39,16 @@ namespace UR
 		
 		float _maxVelocity;
 		float _maxThrust;
+
+		bool _weaponLocked1;
+		bool _weaponLocked2;
 		
+		float _weaponCoolDown1;
+		float _weaponCoolDown2;
+		
+		float _weaponRumble;
+
+		uint32 _health;
 		uint8 _engineState;
 	};
 }

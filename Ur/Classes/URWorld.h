@@ -38,6 +38,8 @@ namespace UR
 		
 		Enemy *GetEnemyWithID(uint32 clientID);
 		
+		void ReSpawn();
+		
 	private:
 		void ActivateGamepad(RN::GamepadDevice *gamepad);
 		
@@ -49,12 +51,14 @@ namespace UR
 		RN::Camera *_camera;
 		RN::GamepadDevice *_gamepad;
 		
+		RN::Random::MersenneTwister _random;
+		
 		RN::bullet::PhysicsWorld *_physicsWorld;
 		
 		SpaceShip *_ship;
 		
 		RN::UI::Widget *_hudWidget;
-		RN::UI::Label *_speedLabel;
+		RN::UI::Label *_statsLabel;
 		
 		RN::Array *_enemies;
 	};

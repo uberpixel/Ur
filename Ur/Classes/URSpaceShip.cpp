@@ -7,6 +7,7 @@
 //
 
 #include "URSpaceShip.h"
+#include "URMissile.h"
 
 namespace UR
 {
@@ -14,8 +15,14 @@ namespace UR
 		_camera(nullptr),
 		_gamepad(nullptr),
 		_client(client),
+		_health(150),
 		_maxThrust(0.5),
-		_maxVelocity(5.0)
+		_maxVelocity(5.0),
+		_weaponCoolDown1(0.0f),
+		_weaponCoolDown2(0.0f),
+		_weaponLocked1(false),
+		_weaponLocked2(false),
+		_weaponRumble(0.0)
 	{
 		RN::Model *model = RN::Model::WithFile("Models/Ship/ship_outside.sgm");
 		
@@ -59,6 +66,11 @@ namespace UR
 	}
 	
 	
+	void SpaceShip::Reset()
+	{
+		_rigidBody->SetLinearVelocity(RN::Vector3());
+	}
+	
 	void SpaceShip::Update(float delta)
 	{
 		if(!_gamepad)
@@ -90,16 +102,61 @@ namespace UR
 		angularVelocity.z = -_gamepad->GetAnalog1().x;
 		angularVelocity.x = _gamepad->GetAnalog1().y;
 		
-		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity));
 		_rigidBody->GetBulletCollisionObject()->activate(true);
 		
-		_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
 
-		RN::Entity::Update(delta);
-		
+		// Shooting
 		if(_client->IsReady())
 		{
+			_weaponRumble = MAX(0.0, _weaponRumble - (1024 * delta));
+			
+			_weaponCoolDown1 = MAX(0.0, _weaponCoolDown1 - delta);
+			_weaponCoolDown2 = MAX(0.0, _weaponCoolDown2 - delta);
+			
+			if(_gamepad->IsButtonPressed(8))
+			{
+				if(_weaponCoolDown1 <= 0.0 && !_weaponLocked1)
+				{
+					_weaponCoolDown1 = 0.6f;
+					_weaponLocked1   = true;
+					_weaponRumble    = 255;
+					
+					RN::Vector3 position(GetWorldPosition());
+					RN::Quaternion rotation(GetWorldRotation());
+					
+					position += rotation.GetRotatedVector(RN::Vector3(-3.0f, 0.0f, 0.0f));
+					
+					new Missile(_client->GetClientID(), false, _rigidBody->GetLinearVelocity(), position, rotation);
+				}
+			}
+			else
+			{
+				_weaponLocked1 = false;
+			}
+			
+			if(_gamepad->IsButtonPressed(9))
+			{
+				if(_weaponCoolDown2 <= 0.0 && !_weaponLocked2)
+				{
+					_weaponCoolDown2 = 0.6f;
+					_weaponLocked2   = true;
+					_weaponRumble    = 255;
+					
+					RN::Vector3 position(GetWorldPosition());
+					RN::Quaternion rotation(GetWorldRotation());
+					
+					position += rotation.GetRotatedVector(RN::Vector3(3.0f, 0.0f, 0.0f));
+					
+					new Missile(_client->GetClientID(), true, _rigidBody->GetLinearVelocity(), position, rotation);
+				}
+			}
+			else
+			{
+				_weaponLocked2 = false;
+			}
+		
+		
 			RN::Vector3 position = GetWorldPosition();
 			RN::Quaternion rotation = GetWorldRotation();
 			
@@ -117,5 +174,12 @@ namespace UR
 			
 			_client->SendPacket(packet);
 		}
+		
+		
+		rumble += _weaponRumble;
+		rumble = MIN(rumble, 255);
+		
+		_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
+		RN::Entity::Update(delta);
 	}
 }

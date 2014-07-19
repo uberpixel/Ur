@@ -122,6 +122,8 @@ namespace UR
 		_ship->SetCamera(_camera);
 		_ship->SetGamepad(_gamepad);
 		
+		ReSpawn();
+		
 		// Sun
 		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
 		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
@@ -137,11 +139,12 @@ namespace UR
 		_hudWidget = new RN::UI::Widget(RN::UI::Widget::Style::Titled, RN::Rect(40.0f, 40.0f, 220.0f, 60.0f));
 		_hudWidget->Open();
 		
-		_speedLabel = new RN::UI::Label();
-		_speedLabel->SetFrame(RN::Rect(0.0f, 10.0f, 220.0f, 18.0f).Inset(10.0f, 0.0f));
-		_speedLabel->SetTextColor(RN::UI::Color::WhiteColor());
+		_statsLabel = new RN::UI::Label();
+		_statsLabel->SetFrame(RN::Rect(0.0f, 0.0f, 220.0f, 60).Inset(5.0f, 5.0f));
+		_statsLabel->SetTextColor(RN::UI::Color::WhiteColor());
+		_statsLabel->SetNumberOfLines(0);
 		
-		_hudWidget->GetContentView()->AddSubview(_speedLabel);
+		_hudWidget->GetContentView()->AddSubview(_statsLabel);
 	}
 	
 	Enemy *World::GetEnemyWithID(uint32 clientID)
@@ -166,6 +169,13 @@ namespace UR
 
 		return result;
 	}
+	
+	void World::ReSpawn()
+	{
+		_ship->Reset();
+		_ship->SetPosition(_random.GetRandomVector3Range(RN::Vector3(-128), RN::Vector3(128)));
+		
+	}
 
 	void World::Update(float delta)
 	{
@@ -174,7 +184,7 @@ namespace UR
 		if(_client)
 			_client->Step();
 		
-		
-		_speedLabel->SetText(RNSTR("Speed: %fm/s", _ship->GetSpeed()));
+		RN::Vector3 position = _ship->GetWorldPosition();
+		_statsLabel->SetText(RNSTR("Speed: %.2fm/s\nPosition: {%.2f, %.2f, %.2f}\nHealth: %d", _ship->GetSpeed(), position.x, position.y, position.z, _ship->GetHealth()));
 	}
 }
