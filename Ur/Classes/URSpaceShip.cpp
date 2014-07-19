@@ -18,7 +18,7 @@ namespace UR
 		_gamepad(nullptr),
 		_client(client),
 		_health(150),
-		_maxThrust(1.25),
+		_maxThrust(2.25),
 		_maxVelocity(500.0),
 		_engineState(0b00001111),
 		_weaponCoolDown1(0.0f),
@@ -149,6 +149,8 @@ namespace UR
 			
 			impulseCenter /= engineCount;
 			
+			RNDebug("(%f, %f, %f)", impulseCenter.x, impulseCenter.y, impulseCenter.z);
+			
 			if(engineCount > 0)
 			{
 				thrust *= engineCount/4.0f;
@@ -163,7 +165,6 @@ namespace UR
 	
 		angularVelocity.z = -_gamepad->GetAnalog1().x * 0.1f;
 		angularVelocity.x = _gamepad->GetAnalog1().y * 0.1f;
-		angularVelocity.y = -_gamepad->GetAnalog2().x * 0.05f;
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity) + _rigidBody->GetAngularVelocity());
 		_rigidBody->GetBulletCollisionObject()->activate(true);
