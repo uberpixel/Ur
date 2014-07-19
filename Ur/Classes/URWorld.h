@@ -42,6 +42,7 @@ namespace UR
 		
 	private:
 		void ActivateGamepad(RN::GamepadDevice *gamepad);
+		void GenerateAsteroids();
 		
 		Type _type;
 		

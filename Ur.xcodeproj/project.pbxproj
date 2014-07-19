@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5947C59197B12C900744089 /* URAsteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5947C58197B12C900744089 /* URAsteroid.cpp */; };
 		E9676AC6197A8F620054F01A /* callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676A9F197A8F620054F01A /* callbacks.c */; };
 		E9676AC7197A8F620054F01A /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AA1197A8F620054F01A /* compress.c */; };
 		E9676AC8197A8F620054F01A /* host.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AAE197A8F620054F01A /* host.c */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D5947C58197B12C900744089 /* URAsteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URAsteroid.cpp; sourceTree = "<group>"; };
+		D5947C5A197B12DF00744089 /* URAsteroid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URAsteroid.h; sourceTree = "<group>"; };
 		E9676A9F197A8F620054F01A /* callbacks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callbacks.c; sourceTree = "<group>"; };
 		E9676AA1197A8F620054F01A /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
 		E9676AAE197A8F620054F01A /* host.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = host.c; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				E9676ADE197AA0970054F01A /* URPacket.h */,
 				E9676AE8197AE5810054F01A /* URMissile.cpp */,
 				E9676AEA197AE58E0054F01A /* URMissile.h */,
+				D5947C58197B12C900744089 /* URAsteroid.cpp */,
+				D5947C5A197B12DF00744089 /* URAsteroid.h */,
 			);
 			name = Classes;
 			path = Ur;
@@ -234,6 +239,7 @@
 				E9676AD3197A8F620054F01A /* packet.c in Sources */,
 				E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */,
 				E9676AD2197A8F620054F01A /* list.c in Sources */,
+				D5947C59197B12C900744089 /* URAsteroid.cpp in Sources */,
 				E9676ADC197A92630054F01A /* URClient.cpp in Sources */,
 				E9676AD4197A8F620054F01A /* peer.c in Sources */,
 				E9676AD5197A8F620054F01A /* protocol.c in Sources */,

@@ -135,6 +135,9 @@ namespace UR
 		shadowParameter.splits[3].updateInterval = 1;
 		sun->ActivateShadows(shadowParameter);
 		
+		// Spawn asteroids
+		GenerateAsteroids();
+		
 		// UI
 		_hudWidget = new RN::UI::Widget(RN::UI::Widget::Style::Titled, RN::Rect(40.0f, 40.0f, 220.0f, 60.0f));
 		_hudWidget->Open();
@@ -145,6 +148,36 @@ namespace UR
 		_statsLabel->SetNumberOfLines(0);
 		
 		_hudWidget->GetContentView()->AddSubview(_statsLabel);
+	}
+	
+	void World::GenerateAsteroids()
+	{
+		RN::Random::MersenneTwister random;
+		random.Seed(0x1024);
+		
+		RN::Model *asteroid = RN::Model::WithFile("Models/Asteroids/asteroid_3.sgm");
+		RN::InstancingNode *asteroidNode = new RN::InstancingNode();
+		asteroidNode->SetModels(RN::Array::WithObjects(asteroid, nullptr));
+		asteroidNode->SetPivot(_camera);
+		asteroidNode->SetFlags(asteroidNode->GetFlags() | RN::SceneNode::Flags::NoSave);
+		asteroidNode->SetMode(RN::InstancingNode::Mode::Thinning | RN::InstancingNode::Mode::Clipping);
+		asteroidNode->SetCellSize(128.0f);
+		asteroidNode->SetClippingRange(1024.0f);
+		asteroidNode->SetThinningRange(512.0f);
+		asteroidNode->Release();
+		
+		for(int i = 0; i < 5000; i ++)
+		{
+			RN::Vector3 pos(random.GetRandomFloatRange(-2000.0f, 2000.0f), random.GetRandomFloatRange(-2000.0f, 2000.0f), random.GetRandomFloatRange(-2000.0f, 2000.0f));
+			
+			RN::Entity *entity = new RN::Entity(asteroid, pos);
+			entity->SetFlags(entity->GetFlags() | RN::SceneNode::Flags::Static | RN::SceneNode::Flags::NoSave);
+			entity->SetScale(RN::Vector3(random.GetRandomFloatRange(1.0f, 10.0f)));
+			entity->SetRotation(random.GetRandomVector3Range(RN::Vector3(0.0f), RN::Vector3(360.0f)));
+			entity->Release();
+					
+			asteroidNode->AddChild(entity);
+		}
 	}
 	
 	Enemy *World::GetEnemyWithID(uint32 clientID)
