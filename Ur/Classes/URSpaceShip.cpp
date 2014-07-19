@@ -18,7 +18,7 @@ namespace UR
 		_health(150),
 		_maxThrust(0.25),
 		_maxVelocity(500.0),
-		_engineState(0b00000001)
+		_engineState(0b00001111),
 		_weaponCoolDown1(0.0f),
 		_weaponCoolDown2(0.0f),
 		_weaponLocked1(false),
