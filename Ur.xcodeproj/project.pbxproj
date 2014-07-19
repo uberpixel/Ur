@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9676AC6197A8F620054F01A /* callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676A9F197A8F620054F01A /* callbacks.c */; };
+		E9676AC7197A8F620054F01A /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AA1197A8F620054F01A /* compress.c */; };
+		E9676AC8197A8F620054F01A /* host.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AAE197A8F620054F01A /* host.c */; };
+		E9676AD2197A8F620054F01A /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676ABC197A8F620054F01A /* list.c */; };
+		E9676AD3197A8F620054F01A /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC0197A8F620054F01A /* packet.c */; };
+		E9676AD4197A8F620054F01A /* peer.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC1197A8F620054F01A /* peer.c */; };
+		E9676AD5197A8F620054F01A /* protocol.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC2197A8F620054F01A /* protocol.c */; };
+		E9676AD6197A8F620054F01A /* unix.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC4197A8F620054F01A /* unix.c */; };
 		E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E851979DB2700113827 /* URApplication.cpp */; };
 		E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E881979DB2700113827 /* URWorld.cpp */; };
 		E9FA6E8D1979DB2700113827 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E8C1979DB2700113827 /* main.cpp */; };
@@ -15,6 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9676A9F197A8F620054F01A /* callbacks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callbacks.c; sourceTree = "<group>"; };
+		E9676AA1197A8F620054F01A /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
+		E9676AAE197A8F620054F01A /* host.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = host.c; sourceTree = "<group>"; };
+		E9676ABC197A8F620054F01A /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
+		E9676AC0197A8F620054F01A /* packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = packet.c; sourceTree = "<group>"; };
+		E9676AC1197A8F620054F01A /* peer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = peer.c; sourceTree = "<group>"; };
+		E9676AC2197A8F620054F01A /* protocol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = protocol.c; sourceTree = "<group>"; };
+		E9676AC4197A8F620054F01A /* unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unix.c; sourceTree = "<group>"; };
 		E9FA6E811979DB2700113827 /* Ur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FA6E851979DB2700113827 /* URApplication.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = URApplication.cpp; path = Classes/URApplication.cpp; sourceTree = "<group>"; };
 		E9FA6E871979DB2700113827 /* URApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URApplication.h; path = Classes/URApplication.h; sourceTree = "<group>"; };
@@ -39,11 +55,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9676A9D197A8F620054F01A /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E9676A9E197A8F620054F01A /* enet */,
+			);
+			name = Vendor;
+			path = Ur/Vendor;
+			sourceTree = "<group>";
+		};
+		E9676A9E197A8F620054F01A /* enet */ = {
+			isa = PBXGroup;
+			children = (
+				E9676A9F197A8F620054F01A /* callbacks.c */,
+				E9676AA1197A8F620054F01A /* compress.c */,
+				E9676AAE197A8F620054F01A /* host.c */,
+				E9676ABC197A8F620054F01A /* list.c */,
+				E9676AC0197A8F620054F01A /* packet.c */,
+				E9676AC1197A8F620054F01A /* peer.c */,
+				E9676AC2197A8F620054F01A /* protocol.c */,
+				E9676AC4197A8F620054F01A /* unix.c */,
+			);
+			path = enet;
+			sourceTree = "<group>";
+		};
 		E9FA6E771979DB2700113827 = {
 			isa = PBXGroup;
 			children = (
 				E9FA6E841979DB2700113827 /* Classes */,
 				E9FA6E8B1979DB2700113827 /* Supporting files */,
+				E9676A9D197A8F620054F01A /* Vendor */,
 				E9FA6E991979DBA100113827 /* Resources */,
 				E9FA6E821979DB2700113827 /* Products */,
 			);
@@ -167,9 +208,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */,
+				E9676AC7197A8F620054F01A /* compress.c in Sources */,
+				E9676AD3197A8F620054F01A /* packet.c in Sources */,
 				E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */,
+				E9676AD2197A8F620054F01A /* list.c in Sources */,
+				E9676AD4197A8F620054F01A /* peer.c in Sources */,
+				E9676AD5197A8F620054F01A /* protocol.c in Sources */,
+				E9676AC6197A8F620054F01A /* callbacks.c in Sources */,
+				E9676AC8197A8F620054F01A /* host.c in Sources */,
 				E9FA6E8D1979DB2700113827 /* main.cpp in Sources */,
 				E9FA6EA4197A019000113827 /* URSpaceShip.cpp in Sources */,
+				E9676AD6197A8F620054F01A /* unix.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +303,7 @@
 					"$(inherited)",
 					/usr/local/include/rayne/,
 					"\"$(SRCROOT)/Ur/Resources/modules/bullet/include\"/**",
+					"\"$(SRCROOT)/Ur/Vendor/enet/include\"",
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -283,6 +333,7 @@
 					"$(inherited)",
 					/usr/local/include/rayne/,
 					"\"$(SRCROOT)/Ur/Resources/modules/bullet/include\"/**",
+					"\"$(SRCROOT)/Ur/Vendor/enet/include\"",
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -318,6 +369,7 @@
 				E9FA6E981979DB2700113827 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
