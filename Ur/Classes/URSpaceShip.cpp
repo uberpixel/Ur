@@ -30,9 +30,6 @@ namespace UR
 		_rigidBody->SetMaterial( material);
 		
 		AddAttachment(_rigidBody);
-		
-		_gizmo = new RN::Entity(RN::Model::WithFile("Models/Gizmo.sgm"));
-		_gizmo->SetScale(RN::Vector3(0.04f));
 	}
 	
 	
@@ -44,11 +41,7 @@ namespace UR
 		AddChild(camera);
 		
 		_camera = camera;
-		_camera->SetPosition(RN::Vector3(0.0f, 0.2f, -0.1f));
-		_camera->SetRotation(RN::Vector3(180.0f, 0.0, 0.0f));
-		
-		_camera->AddChild(_gizmo);
-		_gizmo->SetPosition(RN::Vector3(0.2f, -0.1f, -0.3f));
+		_camera->SetPosition(RN::Vector3(0.0f, 0.8f, -0.8f));
 	}
 	void SpaceShip::SetGamepad(RN::GamepadDevice *gamepad)
 	{
@@ -98,8 +91,5 @@ namespace UR
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity));
 		_rigidBody->GetBulletCollisionObject()->activate(true);
-		
-		// Gizmo
-		_gizmo->SetWorldRotation(RN::Vector3(0.0f));
 	}
 }
