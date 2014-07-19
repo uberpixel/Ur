@@ -88,13 +88,16 @@ namespace UR
 						while(!thread->IsCancelled())
 							_server->Step();
 						
-					});
+					}, false);
+					
+					thread->Detach();
 					
 					_client = new Client(1337);
 					_client->Connect("127.0.0.1");
 					
 					thread->Cancel();
 					thread->WaitForExit();
+					thread->Release();
 				}
 				break;
 		}

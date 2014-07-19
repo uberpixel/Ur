@@ -37,7 +37,7 @@ namespace UR
 	{
 		SetTitle("Ur: GOTY Edition!");
 		
-		RN::Kernel::GetSharedInstance()->SetMaxFPS(65.0f);
+		RN::Kernel::GetSharedInstance()->SetMaxFPS(60);
 		
 		RN::MessageCenter::GetSharedInstance()->AddObserver(kRNInputEventMessage, [this](RN::Message *message) {
 			
