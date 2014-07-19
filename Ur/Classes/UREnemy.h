@@ -25,6 +25,11 @@ namespace UR
 		
 	private:
 		uint32 _clientID;
+		
+		RN::Entity *_engineLeft;
+		RN::Entity *_engineRight;
+		RN::Entity *_engineWingLeft;
+		RN::Entity *_engineWingRight;
 	};
 }
 

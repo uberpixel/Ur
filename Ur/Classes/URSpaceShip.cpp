@@ -18,6 +18,7 @@ namespace UR
 		_maxVelocity(5.0)
 	{
 		RN::Model *model = RN::Model::WithFile("Models/Ship/ship_outside.sgm");
+		
 		RN::bullet::Shape *shape = RN::bullet::TriangleMeshShape::WithModel(model);
 		
 		SetModel(RN::Model::WithFile("Models/Ship/ship_inside.sgm"));
@@ -63,6 +64,7 @@ namespace UR
 		if(!_gamepad)
 			return;
 		
+		uint8 rumble = 1;
 		RN::Quaternion rotation = GetRotation();
 		
 		// Thrust
@@ -74,23 +76,25 @@ namespace UR
 			_rigidBody->SetLinearVelocity(velocity);
 		}
 		
-		RN::Vector2 thrust = _gamepad->GetAnalog1() * _maxThrust;
-		if(thrust.GetLength() > 0.001)
+		float thrust = (_gamepad->GetTrigger1() - _gamepad->GetTrigger2()) * _maxThrust;
+		if(RN::Math::FastAbs(thrust) > 0.001)
 		{
-			RN::Vector3 vector(thrust.x, 0.0f, thrust.y);
+			RN::Vector3 vector(0.0f, 0.0f, thrust);
 			_rigidBody->ApplyImpulse(rotation.GetRotatedVector(vector));
+			rumble = RN::Math::FastAbs(thrust)/_maxThrust*127;
 		}
 		
 		// Rotation
 		RN::Vector3 angularVelocity;
 	
-		angularVelocity.y = -_gamepad->GetAnalog2().x;
-		angularVelocity.z = _gamepad->IsButtonPressed(8)-_gamepad->IsButtonPressed(9);
-		angularVelocity.x = _gamepad->GetAnalog2().y;
+		angularVelocity.z = -_gamepad->GetAnalog1().x;
+		angularVelocity.x = _gamepad->GetAnalog1().y;
 		
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity));
 		_rigidBody->GetBulletCollisionObject()->activate(true);
+		
+		_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
 
 		RN::Entity::Update(delta);
 		

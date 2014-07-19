@@ -73,7 +73,7 @@ namespace UR
 		{
 			case Type::Client:
 				_client = new Client(1337);
-				_client->Connect("192.168.0.29");
+				_client->Connect("169.254.26.208");
 				break;
 				
 			case Type::Server:
@@ -124,6 +124,10 @@ namespace UR
 		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
 		RN::ShadowParameter shadowParameter(_camera, 2048);
 		shadowParameter.distanceBlendFactor = 0.01f;
+		shadowParameter.splits[0].updateInterval = 1;
+		shadowParameter.splits[1].updateInterval = 1;
+		shadowParameter.splits[2].updateInterval = 1;
+		shadowParameter.splits[3].updateInterval = 1;
 		sun->ActivateShadows(shadowParameter);
 		
 		// UI

@@ -15,6 +15,15 @@ namespace UR
 	{
 		SetModel(RN::Model::WithFile("Models/Ship/ship_outside.sgm"));
 		SetFlags(GetFlags() | RN::SceneNode::Flags::Hidden);
+		
+		_engineLeft = new RN::Entity(RN::Model::WithFile("Models/Ship/ship_engine_left.sgm"));
+		_engineRight = new RN::Entity(RN::Model::WithFile("Models/Ship/ship_engine_right.sgm"));
+		_engineWingLeft = new RN::Entity(RN::Model::WithFile("Models/Ship/ship_engine_leftwing.sgm"));
+		_engineWingRight = new RN::Entity(RN::Model::WithFile("Models/Ship/ship_engine_rightwing.sgm"));
+		AddChild(_engineLeft);
+		AddChild(_engineRight);
+		AddChild(_engineWingLeft);
+		AddChild(_engineWingRight);
 	}
 	
 	void Enemy::UpdateFromPacket(Packet &packet)

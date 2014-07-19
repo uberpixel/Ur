@@ -37,6 +37,8 @@ namespace UR
 		
 		float _maxVelocity;
 		float _maxThrust;
+		
+		uint8 _engineState;
 	};
 }
 
