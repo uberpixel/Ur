@@ -16,8 +16,9 @@ namespace UR
 		_gamepad(nullptr),
 		_client(client),
 		_health(150),
-		_maxThrust(0.5),
-		_maxVelocity(5.0),
+		_maxThrust(0.25),
+		_maxVelocity(500.0),
+		_engineState(0b00000001)
 		_weaponCoolDown1(0.0f),
 		_weaponCoolDown2(0.0f),
 		_weaponLocked1(false),
@@ -33,7 +34,7 @@ namespace UR
 		RN::bullet::PhysicsMaterial *material = new RN::bullet::PhysicsMaterial();
 		material->SetLinearDamping(0.0);
 		material->SetFriction(0.0);
-		material->SetAngularDamping(0.0);
+		material->SetAngularDamping(0.9);
 		
 		_rigidBody = new RN::bullet::RigidBody(shape, 10.0f);
 		_rigidBody->SetMaterial( material);
@@ -65,10 +66,22 @@ namespace UR
 		return velocity.GetLength();
 	}
 	
+	void SpaceShip::SetEngineState(uint8 engine, bool working)
+	{
+		if(working)
+			_engineState |= (1 << engine);
+		else
+			_engineState &= ~(1 << engine);
+	}
 	
 	void SpaceShip::Reset()
 	{
 		_rigidBody->SetLinearVelocity(RN::Vector3());
+	}
+
+	bool SpaceShip::GetEngineState(uint8 engine)
+	{
+		return (_engineState & (1 << engine));
 	}
 	
 	void SpaceShip::Update(float delta)
@@ -91,18 +104,51 @@ namespace UR
 		float thrust = (_gamepad->GetTrigger1() - _gamepad->GetTrigger2()) * _maxThrust;
 		if(RN::Math::FastAbs(thrust) > 0.001)
 		{
-			RN::Vector3 vector(0.0f, 0.0f, thrust);
-			_rigidBody->ApplyImpulse(rotation.GetRotatedVector(vector));
-			rumble = RN::Math::FastAbs(thrust)/_maxThrust*127;
+			RN::Vector3 impulseCenter;
+			
+			// Change behaviour based on missing engines
+			int engineCount = 0;
+			if(_engineState & (1 << 0))
+			{
+				impulseCenter += RN::Vector3(-20.0f, 10.0f, 0.0f);
+				engineCount++;
+			}
+			if(_engineState & (1 << 1))
+			{
+				impulseCenter += RN::Vector3(-10.0f, 10.0f, 0.0f);
+				engineCount++;
+			}
+			if(_engineState & (1 << 2))
+			{
+				impulseCenter += RN::Vector3(10.0f, 10.0f, 0.0f);
+				engineCount++;
+			}
+			if(_engineState & (1 << 3))
+			{
+				impulseCenter += RN::Vector3(20.0f, 10.0f, 0.0f);
+				engineCount++;
+			}
+			
+			impulseCenter /= engineCount;
+			
+			RNDebug("(%f, %f, %f)", impulseCenter.x, impulseCenter.y, impulseCenter.z);
+			
+			if(engineCount > 0)
+			{
+				thrust *= engineCount/4.0f;
+				RN::Vector3 vector(0.0f, 0.0f, thrust);
+				_rigidBody->ApplyImpulse(rotation.GetRotatedVector(vector), impulseCenter);
+				rumble = RN::Math::FastAbs(thrust)/_maxThrust*127;
+			}
 		}
 		
 		// Rotation
 		RN::Vector3 angularVelocity;
 	
-		angularVelocity.z = -_gamepad->GetAnalog1().x;
-		angularVelocity.x = _gamepad->GetAnalog1().y;
+		angularVelocity.z = -_gamepad->GetAnalog1().x * 0.1f;
+		angularVelocity.x = _gamepad->GetAnalog1().y * 0.1f;
 		
-		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity));
+		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity) + _rigidBody->GetAngularVelocity());
 		_rigidBody->GetBulletCollisionObject()->activate(true);
 		
 

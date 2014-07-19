@@ -23,6 +23,8 @@ namespace UR
 		
 		void SetCamera(RN::Camera *camera);
 		void SetGamepad(RN::GamepadDevice *gamepad);
+		void SetEngineState(uint8 engine, bool working);
+		bool GetEngineState(uint8 engine);
 		
 		float GetSpeed() const;
 		uint32 GetHealth() const { return _health; }
