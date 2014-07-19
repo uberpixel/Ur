@@ -104,6 +104,7 @@ namespace UR
 					{
 						case Packet::Type::PositionUpdate:
 						case Packet::Type::ShotsFired:
+						case Packet::Type::GoodHit:
 							BroadcastPacket(packet);
 							break;
 							

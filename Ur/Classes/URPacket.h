@@ -19,7 +19,8 @@ namespace UR
 			Handshake,
 			PositionUpdate,
 			ClientConnected,
-			ShotsFired
+			ShotsFired,
+			GoodHit
 		};
 		
 		Packet(Type type) :

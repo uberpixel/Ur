@@ -16,6 +16,7 @@ namespace UR
 		RN::World("OctreeSceneManager"),
 		_type(type),
 		_enemies(new RN::Array()),
+		_missiles(new RN::Array()),
 		_gamepad(nullptr),
 		_ship(nullptr),
 		_server(nullptr),
@@ -210,12 +211,64 @@ namespace UR
 		
 	}
 
+	
+	void World::AddMissileTracking(Missile *missile)
+	{
+		Lock();
+		_missiles->AddObject(missile);
+		Unlock();
+	}
+	void World::RemoveMissileTracking(Missile *missile)
+	{
+		Lock();
+		_missiles->RemoveObject(missile);
+		Unlock();
+	}
+	
+	
 	void World::Update(float delta)
 	{
+		if(_ship->GetHealth() <= 0)
+			ReSpawn();
+		
+		
 		if(_server)
 			_server->Step();
 		if(_client)
 			_client->Step();
+		
+		std::unordered_set<Missile *> hits;
+		
+		_missiles->Enumerate<Missile>([&](Missile *missile, size_t index, bool &stop) {
+			
+			RN::Vector3 position = missile->GetPosition();
+			
+			_enemies->Enumerate<Enemy>([&](Enemy *enemy, size_t index, bool &stop) {
+				
+				float distance = (position.GetDistance(enemy->GetPosition()));
+				
+				if(distance < 10.0f)
+				{
+					// Good hit, good hit!
+					
+					Packet packet(Packet::Type::GoodHit);
+					packet.WriteUInt32(enemy->GetClientID());
+					packet.WriteFloat(distance);
+					
+					_client->SendPacket(packet);
+					
+					hits.insert(missile);
+				}
+				
+			});
+			
+		});
+		
+		for(Missile *hit : hits)
+		{
+			_missiles->RemoveObject(hit);
+			hit->RemoveFromWorld();
+		}
 		
 		RN::Vector3 position = _ship->GetWorldPosition();
 		_statsLabel->SetText(RNSTR("Speed: %.2fm/s\nPosition: {%.2f, %.2f, %.2f}\nHealth: %d", _ship->GetSpeed(), position.x, position.y, position.z, _ship->GetHealth()));

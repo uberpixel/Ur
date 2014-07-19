@@ -16,6 +16,7 @@
 #include "UREnemy.h"
 #include "URServer.h"
 #include "URClient.h"
+#include "URMissile.h"
 
 namespace UR
 {
@@ -40,6 +41,9 @@ namespace UR
 		
 		void ReSpawn();
 		
+		void AddMissileTracking(Missile *missile);
+		void RemoveMissileTracking(Missile *missile);
+		
 	private:
 		void ActivateGamepad(RN::GamepadDevice *gamepad);
 		void GenerateAsteroids();
@@ -62,6 +66,7 @@ namespace UR
 		RN::UI::Label *_statsLabel;
 		
 		RN::Array *_enemies;
+		RN::Array *_missiles;
 	};
 }
 

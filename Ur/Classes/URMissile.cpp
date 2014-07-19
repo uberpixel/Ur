@@ -8,6 +8,7 @@
 
 #include "URMissile.h"
 #include "URClient.h"
+#include "URWorld.h"
 
 #define kURMissileAngularVelocity 5.0f
 #define kURMissileFlightTime      10.0f
@@ -53,6 +54,7 @@ namespace UR
 			packet.WriteFloat(initialVelocity.z);
 			
 			Client::GetLocalClient()->SendPacket(packet);
+			World::GetSharedInstance()->AddMissileTracking(this);
 		}
 	}
 								
@@ -72,7 +74,7 @@ namespace UR
 	}
 	
 	void Missile::Update(float delta)
-	{
+	{		
 		RN::Entity::Update(delta);
 		
 		_time -= delta;
@@ -80,6 +82,8 @@ namespace UR
 		if(_time <= 0.0f)
 		{
 			RemoveFromWorld();
+			World::GetSharedInstance()->RemoveMissileTracking(this);
+			
 			return;
 		}
 		

@@ -11,6 +11,8 @@
 
 namespace UR
 {
+	SpaceShip *_localShip = nullptr;
+	
 	SpaceShip::SpaceShip(Client *client) :
 		_camera(nullptr),
 		_gamepad(nullptr),
@@ -23,7 +25,8 @@ namespace UR
 		_weaponCoolDown2(0.0f),
 		_weaponLocked1(false),
 		_weaponLocked2(false),
-		_weaponRumble(0.0)
+		_weaponRumble(0.0),
+		_damageCooldown(0.0)
 	{
 		RN::Model *model = RN::Model::WithFile("Models/Ship/ship_outside.sgm");
 		
@@ -40,6 +43,14 @@ namespace UR
 		_rigidBody->SetMaterial( material);
 		
 		AddAttachment(_rigidBody);
+		
+		_localShip = this;
+	}
+	
+	
+	SpaceShip *SpaceShip::GetLocalShip()
+	{
+		return _localShip;
 	}
 	
 	
@@ -74,9 +85,16 @@ namespace UR
 			_engineState &= ~(1 << engine);
 	}
 	
+	void SpaceShip::TakeHit(float distance)
+	{
+		_damageCooldown = 0.8f;
+		_health -= 40;
+	}
+	
 	void SpaceShip::Reset()
 	{
 		_rigidBody->SetLinearVelocity(RN::Vector3());
+		_health = 150;
 	}
 
 	bool SpaceShip::GetEngineState(uint8 engine)
@@ -221,9 +239,13 @@ namespace UR
 			_client->SendPacket(packet);
 		}
 		
+		_damageCooldown = MAX(0.0, _damageCooldown - delta);
 		
 		rumble += _weaponRumble;
 		rumble = MIN(rumble, 255);
+		
+		if(_damageCooldown > 0.1)
+			rumble = 255;
 		
 		_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
 		RN::Entity::Update(delta);

@@ -21,13 +21,17 @@ namespace UR
 	public:
 		SpaceShip(Client *client);
 		
+		static SpaceShip *GetLocalShip();
+		
 		void SetCamera(RN::Camera *camera);
 		void SetGamepad(RN::GamepadDevice *gamepad);
 		void SetEngineState(uint8 engine, bool working);
 		bool GetEngineState(uint8 engine);
 		
 		float GetSpeed() const;
-		uint32 GetHealth() const { return _health; }
+		int32 GetHealth() const { return _health; }
+		
+		void TakeHit(float distance);
 		
 		void Reset();
 		void Update(float delta) override;
@@ -48,9 +52,10 @@ namespace UR
 		float _weaponCoolDown1;
 		float _weaponCoolDown2;
 		
+		float _damageCooldown;
 		float _weaponRumble;
 
-		uint32 _health;
+		int32 _health;
 		uint8 _engineState;
 	};
 }

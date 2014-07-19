@@ -9,6 +9,7 @@
 #include "URClient.h"
 #include "URWorld.h"
 #include "URMissile.h"
+#include "URSpaceShip.h"
 
 namespace UR
 {
@@ -108,7 +109,20 @@ namespace UR
 							
 							if(client != _clientID)
 							{
-								new Missile(client, packet);
+								Missile *missile = new Missile(client, packet);
+								missile->Release();
+							}
+							
+							break;
+						}
+							
+						case Packet::Type::GoodHit:
+						{
+							uint32 client = packet.ReadUInt32();
+							
+							if(client == _clientID)
+							{
+								SpaceShip::GetLocalShip()->TakeHit(packet.ReadFloat());
 							}
 							
 							break;
