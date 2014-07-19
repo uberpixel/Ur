@@ -22,6 +22,9 @@ namespace UR
 		
 		void Start() override;
 		void WillExit() override;
+		
+		void StartClient();
+		void StartServer();
 	};
 }
 

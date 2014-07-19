@@ -10,9 +10,10 @@
 
 namespace UR
 {
-	SpaceShip::SpaceShip() :
+	SpaceShip::SpaceShip(Client *client) :
 		_camera(nullptr),
 		_gamepad(nullptr),
+		_client(client),
 		_maxThrust(1.0),
 		_maxVelocity(2.0)
 	{
@@ -65,8 +66,6 @@ namespace UR
 	
 	void SpaceShip::Update(float delta)
 	{
-		RN::Entity::Update(delta);
-		
 		if(!_gamepad)
 			return;
 		
@@ -101,5 +100,27 @@ namespace UR
 		
 		// Gizmo
 		_gizmo->SetWorldRotation(RN::Vector3(0.0f));
+		
+		RN::Entity::Update(delta);
+		
+		if(_client->IsReady())
+		{
+			RN::Vector3 position = GetWorldPosition();
+			RN::Quaternion rotation = GetWorldRotation();
+			
+			Packet packet(Packet::Type::PositionUpdate);
+			
+			packet.WriteUInt32(_client->GetClientID());
+			packet.WriteFloat(position.x);
+			packet.WriteFloat(position.y);
+			packet.WriteFloat(position.z);
+			
+			packet.WriteFloat(rotation.x);
+			packet.WriteFloat(rotation.y);
+			packet.WriteFloat(rotation.z);
+			packet.WriteFloat(rotation.w);
+			
+			_client->SendPacket(packet);
+		}
 	}
 }

@@ -12,12 +12,14 @@
 #include <Rayne/Rayne.h>
 #include <RBRigidBody.h>
 
+#include "URClient.h"
+
 namespace UR
 {
 	class SpaceShip : public RN::Entity
 	{
 	public:
-		SpaceShip();
+		SpaceShip(Client *client);
 		
 		void SetCamera(RN::Camera *camera);
 		void SetGamepad(RN::GamepadDevice *gamepad);
@@ -32,6 +34,8 @@ namespace UR
 		RN::bullet::RigidBody *_rigidBody;
 		
 		RN::Entity *_gizmo;
+		
+		Client *_client;
 		
 		float _maxVelocity;
 		float _maxThrust;

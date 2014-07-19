@@ -16,12 +16,46 @@ namespace UR
 	{}
 	
 	
+	void Application::StartClient()
+	{
+		RN::MessageCenter::GetSharedInstance()->RemoveObserver(this);
+		
+		RN::World *world = new World(World::Type::Client);
+		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
+	}
+	
+	void Application::StartServer()
+	{
+		RN::MessageCenter::GetSharedInstance()->RemoveObserver(this);
+		
+		RN::World *world = new World(World::Type::Server);
+		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
+	}
+	
+	
 	void Application::Start()
 	{
-		SetTitle("Ur");
-
-		RN::World *world = new World();
-		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
+		SetTitle("Ur: GOTY Edition!");
+		
+		RN::MessageCenter::GetSharedInstance()->AddObserver(kRNInputEventMessage, [this](RN::Message *message) {
+			
+			RN::Event *event = message->Downcast<RN::Event>();
+			if(event->GetType() == RN::Event::Type::KeyDown)
+			{
+				char key = event->GetCharacter();
+				switch(key)
+				{
+					case '0':
+						StartServer();
+						break;
+						
+					case '1':
+						StartClient();
+						break;
+				}
+			}
+			
+		}, this);
 	}
 	
 	void Application::WillExit()

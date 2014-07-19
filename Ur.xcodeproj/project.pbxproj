@@ -15,6 +15,9 @@
 		E9676AD4197A8F620054F01A /* peer.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC1197A8F620054F01A /* peer.c */; };
 		E9676AD5197A8F620054F01A /* protocol.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC2197A8F620054F01A /* protocol.c */; };
 		E9676AD6197A8F620054F01A /* unix.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AC4197A8F620054F01A /* unix.c */; };
+		E9676AD9197A90DD0054F01A /* URServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9676AD8197A90DD0054F01A /* URServer.cpp */; };
+		E9676ADC197A92630054F01A /* URClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9676ADB197A92630054F01A /* URClient.cpp */; };
+		E9676AE7197AB95A0054F01A /* UREnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9676AE6197AB95A0054F01A /* UREnemy.cpp */; };
 		E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E851979DB2700113827 /* URApplication.cpp */; };
 		E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E881979DB2700113827 /* URWorld.cpp */; };
 		E9FA6E8D1979DB2700113827 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E8C1979DB2700113827 /* main.cpp */; };
@@ -31,6 +34,13 @@
 		E9676AC1197A8F620054F01A /* peer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = peer.c; sourceTree = "<group>"; };
 		E9676AC2197A8F620054F01A /* protocol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = protocol.c; sourceTree = "<group>"; };
 		E9676AC4197A8F620054F01A /* unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unix.c; sourceTree = "<group>"; };
+		E9676AD8197A90DD0054F01A /* URServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URServer.cpp; path = Classes/URServer.cpp; sourceTree = "<group>"; };
+		E9676ADA197A90E90054F01A /* URServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URServer.h; path = Classes/URServer.h; sourceTree = "<group>"; };
+		E9676ADB197A92630054F01A /* URClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URClient.cpp; path = Classes/URClient.cpp; sourceTree = "<group>"; };
+		E9676ADD197A92C70054F01A /* URClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URClient.h; path = Classes/URClient.h; sourceTree = "<group>"; };
+		E9676ADE197AA0970054F01A /* URPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URPacket.h; path = Classes/URPacket.h; sourceTree = "<group>"; };
+		E9676AE5197AB9430054F01A /* UREnemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UREnemy.h; path = Classes/UREnemy.h; sourceTree = "<group>"; };
+		E9676AE6197AB95A0054F01A /* UREnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UREnemy.cpp; path = Classes/UREnemy.cpp; sourceTree = "<group>"; };
 		E9FA6E811979DB2700113827 /* Ur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FA6E851979DB2700113827 /* URApplication.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = URApplication.cpp; path = Classes/URApplication.cpp; sourceTree = "<group>"; };
 		E9FA6E871979DB2700113827 /* URApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URApplication.h; path = Classes/URApplication.h; sourceTree = "<group>"; };
@@ -105,8 +115,15 @@
 				E9FA6E871979DB2700113827 /* URApplication.h */,
 				E9FA6EA3197A019000113827 /* URSpaceShip.cpp */,
 				E9FA6EA5197A019B00113827 /* URSpaceShip.h */,
+				E9676AE6197AB95A0054F01A /* UREnemy.cpp */,
+				E9676AE5197AB9430054F01A /* UREnemy.h */,
 				E9FA6E881979DB2700113827 /* URWorld.cpp */,
 				E9FA6E8A1979DB2700113827 /* URWorld.h */,
+				E9676AD8197A90DD0054F01A /* URServer.cpp */,
+				E9676ADA197A90E90054F01A /* URServer.h */,
+				E9676ADB197A92630054F01A /* URClient.cpp */,
+				E9676ADD197A92C70054F01A /* URClient.h */,
+				E9676ADE197AA0970054F01A /* URPacket.h */,
 			);
 			name = Classes;
 			path = Ur;
@@ -212,12 +229,15 @@
 				E9676AD3197A8F620054F01A /* packet.c in Sources */,
 				E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */,
 				E9676AD2197A8F620054F01A /* list.c in Sources */,
+				E9676ADC197A92630054F01A /* URClient.cpp in Sources */,
 				E9676AD4197A8F620054F01A /* peer.c in Sources */,
 				E9676AD5197A8F620054F01A /* protocol.c in Sources */,
 				E9676AC6197A8F620054F01A /* callbacks.c in Sources */,
+				E9676AD9197A90DD0054F01A /* URServer.cpp in Sources */,
 				E9676AC8197A8F620054F01A /* host.c in Sources */,
 				E9FA6E8D1979DB2700113827 /* main.cpp in Sources */,
 				E9FA6EA4197A019000113827 /* URSpaceShip.cpp in Sources */,
+				E9676AE7197AB95A0054F01A /* UREnemy.cpp in Sources */,
 				E9676AD6197A8F620054F01A /* unix.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
