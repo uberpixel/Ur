@@ -117,7 +117,7 @@ namespace UR
 		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults&~RN::Camera::Flags::UseFog);
 		RN::Model *sky = RN::Model::WithSkyCube("Sky/Skybox360 002 Up.png", "Sky/Skybox360 002 Down.png", "Sky/Skybox360 002 Left.png", "Sky/Skybox360 002 Right.png", "Sky/Skybox360 002 Back.png", "Sky/Skybox360 002 Front.png");
 		_camera->SetSky(sky);
-		_camera->SetClipFar(100000);
+		_camera->SetClipFar(50000);
 		
 		// Player ship
 		_ship = new SpaceShip(_client);
@@ -130,7 +130,7 @@ namespace UR
 		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
 		sun->SetColor(RN::Color(1.0f, 0.9f, 0.6f));
 		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
-		RN::ShadowParameter shadowParameter(_camera, 4096);
+		RN::ShadowParameter shadowParameter(_camera, 2048);
 		shadowParameter.distanceBlendFactor = 0.00001f;
 		shadowParameter.splits[0].updateInterval = 1;
 		shadowParameter.splits[1].updateInterval = 1;

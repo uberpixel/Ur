@@ -18,7 +18,7 @@ namespace UR
 		_gamepad(nullptr),
 		_client(client),
 		_health(150),
-		_maxThrust(2.25),
+		_maxThrust(5.0),
 		_maxVelocity(500.0),
 		_engineState(0b00001111),
 		_weaponCoolDown1(0.0f),
@@ -35,7 +35,7 @@ namespace UR
 		SetModel(RN::Model::WithFile("Models/Ship/ship_inside.sgm"));
 		
 		RN::bullet::PhysicsMaterial *material = new RN::bullet::PhysicsMaterial();
-		material->SetLinearDamping(0.0);
+		material->SetLinearDamping(0.25);
 		material->SetFriction(0.0);
 		material->SetAngularDamping(0.9);
 		
@@ -161,9 +161,9 @@ namespace UR
 		// Rotation
 		RN::Vector3 angularVelocity;
 	
-		angularVelocity.z = -_gamepad->GetAnalog1().x * 0.1f;
+		angularVelocity.y = -_gamepad->GetAnalog1().x * 0.1f;
 		angularVelocity.x = _gamepad->GetAnalog1().y * 0.1f;
-		angularVelocity.y = -_gamepad->GetAnalog2().x * 0.05f;
+		angularVelocity.z = -_gamepad->GetAnalog2().x * 0.1f;
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity) + _rigidBody->GetAngularVelocity());
 		_rigidBody->GetBulletCollisionObject()->activate(true);
