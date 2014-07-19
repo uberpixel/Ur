@@ -109,13 +109,21 @@ namespace UR
 		
 		AddAttachment(_physicsWorld);
 		
-		// Player ship
+		// Camera and sky
 		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults);
+		RN::Model *sky = RN::Model::WithSkyCube("Sky/Skybox360 002 Up.png", "Sky/Skybox360 002 Down.png", "Sky/Skybox360 002 Left.png", "Sky/Skybox360 002 Right.png", "Sky/Skybox360 002 Back.png", "Sky/Skybox360 002 Front.png");
+		_camera->SetSky(sky);
 		
+		// Player ship
 		_ship = new SpaceShip(_client);
 		_ship->SetCamera(_camera);
 		_ship->SetGamepad(_gamepad);
 		
+		// Sun
+		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
+		RN::ShadowParameter shadowParameter(_camera, 2048);
+		shadowParameter.distanceBlendFactor = 0.01f;
+		sun->ActivateShadows(shadowParameter);
 		
 		// UI
 		_hudWidget = new RN::UI::Widget(RN::UI::Widget::Style::Titled, RN::Rect(40.0f, 40.0f, 220.0f, 60.0f));

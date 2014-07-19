@@ -33,8 +33,6 @@ namespace UR
 		RN::GamepadDevice *_gamepad;
 		RN::bullet::RigidBody *_rigidBody;
 		
-		RN::Entity *_gizmo;
-		
 		Client *_client;
 		
 		float _maxVelocity;
