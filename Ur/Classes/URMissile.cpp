@@ -51,6 +51,8 @@ namespace UR
 			packet.WriteFloat(initialVelocity.x);
 			packet.WriteFloat(initialVelocity.y);
 			packet.WriteFloat(initialVelocity.z);
+			
+			Client::GetLocalClient()->SendPacket(packet);
 		}
 	}
 								
