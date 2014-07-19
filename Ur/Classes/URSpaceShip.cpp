@@ -149,8 +149,6 @@ namespace UR
 			
 			impulseCenter /= engineCount;
 			
-			RNDebug("(%f, %f, %f)", impulseCenter.x, impulseCenter.y, impulseCenter.z);
-			
 			if(engineCount > 0)
 			{
 				thrust *= engineCount/4.0f;
@@ -165,6 +163,7 @@ namespace UR
 	
 		angularVelocity.z = -_gamepad->GetAnalog1().x * 0.1f;
 		angularVelocity.x = _gamepad->GetAnalog1().y * 0.1f;
+		angularVelocity.y = -_gamepad->GetAnalog2().x * 0.05f;
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity) + _rigidBody->GetAngularVelocity());
 		_rigidBody->GetBulletCollisionObject()->activate(true);
