@@ -10,6 +10,9 @@
 #define __UR_WORLD_H__
 
 #include <Rayne/Rayne.h>
+#include <RBPhysicsWorld.h>
+
+#include "URSpaceShip.h"
 
 namespace UR
 {
@@ -25,6 +28,13 @@ namespace UR
 	private:
 		RN::Camera *_camera;
 		RN::GamepadDevice *_gamepad;
+		
+		RN::bullet::PhysicsWorld *_physicsWorld;
+		
+		SpaceShip *_ship;
+		
+		RN::UI::Widget *_hudWidget;
+		RN::UI::Label *_speedLabel;
 	};
 }
 

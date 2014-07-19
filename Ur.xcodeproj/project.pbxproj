@@ -11,6 +11,7 @@
 		E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E881979DB2700113827 /* URWorld.cpp */; };
 		E9FA6E8D1979DB2700113827 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E8C1979DB2700113827 /* main.cpp */; };
 		E9FA6E901979DB2700113827 /* Ur-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = E9FA6E8F1979DB2700113827 /* Ur-Prefix.pch */; };
+		E9FA6EA4197A019000113827 /* URSpaceShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6EA3197A019000113827 /* URSpaceShip.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,8 @@
 		E9FA6E8E1979DB2700113827 /* Ur-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Ur-Info.plist"; path = "Supporting files/Ur-Info.plist"; sourceTree = "<group>"; };
 		E9FA6E8F1979DB2700113827 /* Ur-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Ur-Prefix.pch"; path = "Supporting files/Ur-Prefix.pch"; sourceTree = "<group>"; };
 		E9FA6E991979DBA100113827 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = Ur/Resources; sourceTree = "<group>"; };
+		E9FA6EA3197A019000113827 /* URSpaceShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URSpaceShip.cpp; path = Classes/URSpaceShip.cpp; sourceTree = "<group>"; };
+		E9FA6EA5197A019B00113827 /* URSpaceShip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URSpaceShip.h; path = Classes/URSpaceShip.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,8 @@
 			children = (
 				E9FA6E851979DB2700113827 /* URApplication.cpp */,
 				E9FA6E871979DB2700113827 /* URApplication.h */,
+				E9FA6EA3197A019000113827 /* URSpaceShip.cpp */,
+				E9FA6EA5197A019B00113827 /* URSpaceShip.h */,
 				E9FA6E881979DB2700113827 /* URWorld.cpp */,
 				E9FA6E8A1979DB2700113827 /* URWorld.h */,
 			);
@@ -164,6 +169,7 @@
 				E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */,
 				E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */,
 				E9FA6E8D1979DB2700113827 /* main.cpp in Sources */,
+				E9FA6EA4197A019000113827 /* URSpaceShip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,13 +253,18 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/include/rayne/,
+					"\"$(SRCROOT)/Ur/Resources/modules/bullet/include\"/**",
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/lib/,
+					"\"$(SRCROOT)/Ur/Resources/modules/bullet\"",
 				);
-				OTHER_LDFLAGS = "-lRayne";
+				OTHER_LDFLAGS = (
+					"-lRayne",
+					"-lrayne-bullet",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -271,13 +282,18 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/include/rayne/,
+					"\"$(SRCROOT)/Ur/Resources/modules/bullet/include\"/**",
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/lib/,
+					"\"$(SRCROOT)/Ur/Resources/modules/bullet\"",
 				);
-				OTHER_LDFLAGS = "-lRayne";
+				OTHER_LDFLAGS = (
+					"-lRayne",
+					"-lrayne-bullet",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
