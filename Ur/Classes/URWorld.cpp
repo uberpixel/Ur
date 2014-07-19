@@ -110,7 +110,7 @@ namespace UR
 		AddAttachment(_physicsWorld);
 		
 		// Camera and sky
-		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults);
+		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults&~RN::Camera::Flags::UseFog);
 		RN::Model *sky = RN::Model::WithSkyCube("Sky/Skybox360 002 Up.png", "Sky/Skybox360 002 Down.png", "Sky/Skybox360 002 Left.png", "Sky/Skybox360 002 Right.png", "Sky/Skybox360 002 Back.png", "Sky/Skybox360 002 Front.png");
 		_camera->SetSky(sky);
 		
@@ -121,6 +121,7 @@ namespace UR
 		
 		// Sun
 		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
+		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
 		RN::ShadowParameter shadowParameter(_camera, 2048);
 		shadowParameter.distanceBlendFactor = 0.01f;
 		sun->ActivateShadows(shadowParameter);
@@ -149,13 +150,13 @@ namespace UR
 			}
 			
 		});
-		
+
 		if(!result)
 		{
 			result = new Enemy(clientID);
 			_enemies->AddObject(result->Autorelease());
 		}
-		
+
 		return result;
 	}
 
