@@ -51,7 +51,7 @@ namespace UR
 		AddAttachment(_physicsWorld);
 		
 		// Camera and sky
-		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults);
+		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults&~RN::Camera::Flags::UseFog);
 		RN::Model *sky = RN::Model::WithSkyCube("Sky/Skybox360 002 Up.png", "Sky/Skybox360 002 Down.png", "Sky/Skybox360 002 Left.png", "Sky/Skybox360 002 Right.png", "Sky/Skybox360 002 Back.png", "Sky/Skybox360 002 Front.png");
 		_camera->SetSky(sky);
 		
@@ -62,6 +62,7 @@ namespace UR
 		
 		// Sun
 		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
+		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
 		RN::ShadowParameter shadowParameter(_camera, 2048);
 		shadowParameter.distanceBlendFactor = 0.01f;
 		sun->ActivateShadows(shadowParameter);
@@ -78,6 +79,10 @@ namespace UR
 		
 		
 		RN::Entity *temp = new RN::Entity(RN::Model::WithFile("Models/Ship/ship_outside.sgm"));
+		temp->GetModel()->GetMaterialAtIndex(0, 0)->Define("RN_SPECULARITY");
+		temp->GetModel()->GetMaterialAtIndex(0, 1)->Define("RN_SPECULARITY");
+		temp->GetModel()->GetMaterialAtIndex(0, 0)->SetSpecularColor(RN::Color(0.05f, 0.05f, 0.05f, 80.0f));
+		temp->GetModel()->GetMaterialAtIndex(0, 1)->SetSpecularColor(RN::Color(0.25f, 0.25f, 0.25f, 20.0f));
 		temp->SetPosition(RN::Vector3(0.0f, 0.0f, 40.0f));
 	}
 

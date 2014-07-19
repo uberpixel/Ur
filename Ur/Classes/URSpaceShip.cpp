@@ -13,8 +13,8 @@ namespace UR
 	SpaceShip::SpaceShip() :
 		_camera(nullptr),
 		_gamepad(nullptr),
-		_maxThrust(1.0),
-		_maxVelocity(2.0)
+		_maxThrust(0.5),
+		_maxVelocity(5.0)
 	{
 		RN::Model *model = RN::Model::WithFile("Models/Ship/ship_outside.sgm");
 		RN::bullet::Shape *shape = RN::bullet::TriangleMeshShape::WithModel(model);
@@ -42,6 +42,7 @@ namespace UR
 		
 		_camera = camera;
 		_camera->SetPosition(RN::Vector3(0.0f, 0.8f, -0.8f));
+		_camera->SetRotation(RN::Vector3(0.0f, -5.0f, 0.0f));
 	}
 	void SpaceShip::SetGamepad(RN::GamepadDevice *gamepad)
 	{
@@ -74,19 +75,19 @@ namespace UR
 			_rigidBody->SetLinearVelocity(velocity);
 		}
 		
-		float thrust = _gamepad->GetTrigger1() * _maxThrust;
-		if(thrust > 0.001)
+		RN::Vector2 thrust = _gamepad->GetAnalog1() * _maxThrust;
+		if(thrust.GetLength() > 0.001)
 		{
-			RN::Vector3 vector(0.0f, 0.0f, thrust);
+			RN::Vector3 vector(thrust.x, 0.0f, thrust.y);
 			_rigidBody->ApplyImpulse(rotation.GetRotatedVector(vector));
 		}
 		
 		// Rotation
 		RN::Vector3 angularVelocity;
 	
-		angularVelocity.x = -_gamepad->GetAnalog1().y;
 		angularVelocity.y = -_gamepad->GetAnalog2().x;
-		angularVelocity.z = _gamepad->GetAnalog1().x;
+		angularVelocity.z = _gamepad->IsButtonPressed(8)-_gamepad->IsButtonPressed(9);
+		angularVelocity.x = _gamepad->GetAnalog2().y;
 		
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity));
