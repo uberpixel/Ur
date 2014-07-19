@@ -46,7 +46,7 @@ namespace UR
 			packet.WriteFloat(rotation.x);
 			packet.WriteFloat(rotation.y);
 			packet.WriteFloat(rotation.z);
-			packet.WriteFloat(rotation.y);
+			packet.WriteFloat(rotation.w);
 			
 			packet.WriteFloat(initialVelocity.x);
 			packet.WriteFloat(initialVelocity.y);
