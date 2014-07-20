@@ -47,6 +47,7 @@ namespace UR
 	private:
 		void ActivateGamepad(RN::GamepadDevice *gamepad);
 		void GenerateAsteroids();
+		RN::PostProcessingPipeline *PPCreateBloomPipeline(RN::Camera *cam);
 		
 		Type _type;
 		
