@@ -21,6 +21,8 @@ namespace UR
 	public:
 		Explosion();
 		
+		static Explosion *WihtPosition(const RN::Vector3 &position);
+		
 		void Update(float delta) override;
 		
 	private:

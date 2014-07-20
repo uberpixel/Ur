@@ -75,8 +75,9 @@ namespace UR
 		AddAttachment(_rigidBody->Autorelease());
 		
 		TrailingEffect *effect = new TrailingEffect();
-		
 		AddChild(effect->Autorelease());
+		
+		effect->SetPosition(RN::Vector3(0.0f, 0.0f, 3.0f));
 	}
 	
 	void Missile::Update(float delta)
@@ -87,9 +88,7 @@ namespace UR
 		
 		if(_time <= 0.0f)
 		{
-			Explosion *explosion = new Explosion();
-			explosion->SetPosition(GetWorldPosition());
-			explosion->Autorelease();
+			Explosion::WihtPosition(GetWorldPosition());
 			
 			RemoveFromWorld();
 			World::GetSharedInstance()->RemoveMissileTracking(this);

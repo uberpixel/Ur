@@ -148,6 +148,15 @@ namespace UR
 		AddChild(_smokeEmitter->Autorelease());
 	}
 	
+	Explosion *Explosion::WihtPosition(const RN::Vector3 &position)
+	{
+		Explosion *explosion = new Explosion();
+		explosion->SetPosition(position);
+		explosion->Autorelease();
+		
+		return explosion;
+	}
+	
 	void Explosion::Update(float delta)
 	{
 		RN::SceneNode::Update(delta);
