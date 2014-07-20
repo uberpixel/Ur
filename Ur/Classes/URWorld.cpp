@@ -244,9 +244,7 @@ namespace UR
 			packet.WriteFloat(position.y);
 			packet.WriteFloat(position.z);
 			
-			Explosion *explosion = new Explosion();
-			explosion->SetPosition(position);
-			explosion->Autorelease();
+			_client->SendPacket(packet);
 			
 			ReSpawn();
 		}
@@ -273,9 +271,12 @@ namespace UR
 					
 					Packet packet(Packet::Type::GoodHit);
 					packet.WriteUInt32(enemy->GetClientID());
-					packet.WriteFloat(missile->GetPosition().x);
-					packet.WriteFloat(missile->GetPosition().y);
-					packet.WriteFloat(missile->GetPosition().z);
+					
+					RN::Vector3 position = missile->GetWorldPosition();
+					
+					packet.WriteFloat(position.x);
+					packet.WriteFloat(position.y);
+					packet.WriteFloat(position.z);
 					
 					_client->SendPacket(packet);
 					
