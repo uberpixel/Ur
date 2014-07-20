@@ -122,8 +122,27 @@ namespace UR
 	
 	void SpaceShip::Update(float delta)
 	{
-		if(!_gamepad)
-			return;
+		RN::Input *input = RN::Input::GetSharedInstance();
+		float keyAcceleration = input->IsKeyPressed('k')-input->IsKeyPressed('i');
+		RN::Vector3 keyRotation;
+		keyRotation.x = input->IsKeyPressed('d')-input->IsKeyPressed('a');
+		keyRotation.y = input->IsKeyPressed('s')-input->IsKeyPressed('w');
+		keyRotation.z = input->IsKeyPressed('e')-input->IsKeyPressed('q');
+		bool keyShootLeft = input->IsKeyPressed('j');
+		bool keyShootRight = input->IsKeyPressed('l');
+		
+		if(_gamepad)
+		{
+			keyAcceleration = _gamepad->GetTrigger1() - _gamepad->GetTrigger2();
+			
+			keyRotation.x = _gamepad->GetAnalog1().x;
+			keyRotation.y = _gamepad->GetAnalog1().y;
+			keyRotation.z = _gamepad->GetAnalog2().x;
+			
+			keyShootLeft = _gamepad->IsButtonPressed(8);
+			keyShootRight = _gamepad->IsButtonPressed(9);
+		}
+		
 		
 		uint8 rumble = 1;
 		RN::Quaternion rotation = GetRotation();
@@ -137,7 +156,7 @@ namespace UR
 			_rigidBody->SetLinearVelocity(velocity);
 		}
 		
-		float thrust = (_gamepad->GetTrigger1() - _gamepad->GetTrigger2()) * _maxThrust;
+		float thrust = keyAcceleration * _maxThrust;
 		if(RN::Math::FastAbs(thrust) > 0.001)
 		{
 			RN::Vector3 impulseCenter;
@@ -179,9 +198,9 @@ namespace UR
 		// Rotation
 		RN::Vector3 angularVelocity;
 	
-		angularVelocity.y = -_gamepad->GetAnalog1().x * 0.1f;
-		angularVelocity.x = _gamepad->GetAnalog1().y * 0.1f;
-		angularVelocity.z = -_gamepad->GetAnalog2().x * 0.1f;
+		angularVelocity.y = -keyRotation.x * 0.1f;
+		angularVelocity.x = keyRotation.y * 0.1f;
+		angularVelocity.z = -keyRotation.z * 0.1f;
 		
 		_rigidBody->SetAngularVelocity(rotation.GetRotatedVector(angularVelocity) + _rigidBody->GetAngularVelocity());
 		_rigidBody->GetBulletCollisionObject()->activate(true);
@@ -195,7 +214,7 @@ namespace UR
 			_weaponCoolDown1 = MAX(0.0, _weaponCoolDown1 - delta);
 			_weaponCoolDown2 = MAX(0.0, _weaponCoolDown2 - delta);
 			
-			if(_gamepad->IsButtonPressed(8))
+			if(keyShootLeft)
 			{
 				if(_weaponCoolDown1 <= 0.0 && !_weaponLocked1)
 				{
@@ -216,7 +235,7 @@ namespace UR
 				_weaponLocked1 = false;
 			}
 			
-			if(_gamepad->IsButtonPressed(9))
+			if(keyShootRight)
 			{
 				if(_weaponCoolDown2 <= 0.0 && !_weaponLocked2)
 				{
@@ -264,7 +283,9 @@ namespace UR
 		if(_damageCooldown > 0.1)
 			rumble = 255;
 		
-		_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
+		if(_gamepad)
+			_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
+		
 		RN::Entity::Update(delta);
 	}
 }

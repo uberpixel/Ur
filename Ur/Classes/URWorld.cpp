@@ -418,6 +418,8 @@ namespace UR
 		
 		RN::Vector3 position = _ship->GetWorldPosition();
 		_statsLabel->SetText(RNSTR("Speed: %.2fm/s\nKills: %d, Deaths: %d\nHealth: %d", _ship->GetSpeed(), _kills, _deaths, position.x, position.y, position.z, _ship->GetHealth()));
-		_gamepad->ExecuteCommand(RNCSTR("light"), RN::Value::WithVector3(RN::Vector3(255.0f, 0.0f, 0.0f).GetLerp(RN::Vector3(0.0f, 255.0f, 0.0f), _ship->GetHealth()*0.0066f)));
+		
+		if(_gamepad)
+			_gamepad->ExecuteCommand(RNCSTR("light"), RN::Value::WithVector3(RN::Vector3(255.0f, 0.0f, 0.0f).GetLerp(RN::Vector3(0.0f, 255.0f, 0.0f), _ship->GetHealth()*0.0066f)));
 	}
 }
