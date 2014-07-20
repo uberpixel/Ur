@@ -123,7 +123,7 @@ namespace UR
 							
 							if(client == _clientID)
 							{
-								SpaceShip::GetLocalShip()->TakeHit(packet.ReadFloat());
+								SpaceShip::GetLocalShip()->TakeHit(RN::Vector3(packet.ReadFloat(), packet.ReadFloat(), packet.ReadFloat()));
 							}
 							
 							break;

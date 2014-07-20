@@ -160,6 +160,8 @@ namespace UR
 		random.Seed(0x1024);
 		
 		RN::Model *asteroid = RN::Model::WithFile("Models/Asteroids/asteroid_3.sgm");
+		asteroid->GetMaterialAtIndex(0, 0)->SetAmbientColor(RN::Color::Black());
+		
 		RN::InstancingNode *asteroidNode = new RN::InstancingNode();
 		asteroidNode->SetModels(RN::Array::WithObjects(asteroid, nullptr));
 		asteroidNode->SetPivot(_camera);
@@ -271,7 +273,9 @@ namespace UR
 					
 					Packet packet(Packet::Type::GoodHit);
 					packet.WriteUInt32(enemy->GetClientID());
-					packet.WriteFloat(distance);
+					packet.WriteFloat(missile->GetPosition().x);
+					packet.WriteFloat(missile->GetPosition().y);
+					packet.WriteFloat(missile->GetPosition().z);
 					
 					_client->SendPacket(packet);
 					
@@ -290,5 +294,6 @@ namespace UR
 		
 		RN::Vector3 position = _ship->GetWorldPosition();
 		_statsLabel->SetText(RNSTR("Speed: %.2fm/s\nPosition: {%.2f, %.2f, %.2f}\nHealth: %d", _ship->GetSpeed(), position.x, position.y, position.z, _ship->GetHealth()));
+		_gamepad->ExecuteCommand(RNCSTR("light"), RN::Value::WithVector3(RN::Vector3(255.0f, 0.0f, 0.0f).GetLerp(RN::Vector3(0.0f, 255.0f, 0.0f), _ship->GetHealth()*0.0066f)));
 	}
 }

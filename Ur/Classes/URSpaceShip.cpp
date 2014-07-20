@@ -53,7 +53,6 @@ namespace UR
 		_localShip = this;
 	}
 	
-	
 	SpaceShip *SpaceShip::GetLocalShip()
 	{
 		return _localShip;
@@ -91,8 +90,9 @@ namespace UR
 			_engineState &= ~(1 << engine);
 	}
 	
-	void SpaceShip::TakeHit(float distance)
+	void SpaceShip::TakeHit(RN::Vector3 position)
 	{
+		_rigidBody->ApplyImpulse((GetWorldPosition()-position).GetNormalized(250.0f));
 		_damageCooldown = 0.8f;
 		_health -= 40;
 	}
@@ -160,7 +160,7 @@ namespace UR
 				thrust *= engineCount/4.0f;
 				RN::Vector3 vector(0.0f, 0.0f, thrust);
 				_rigidBody->ApplyImpulse(rotation.GetRotatedVector(vector), impulseCenter);
-				rumble = RN::Math::FastAbs(thrust)/_maxThrust*127;
+				rumble = RN::Math::FastAbs(thrust)/_maxThrust*80;
 			}
 		}
 		

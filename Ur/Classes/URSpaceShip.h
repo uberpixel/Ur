@@ -31,7 +31,7 @@ namespace UR
 		float GetSpeed() const;
 		int32 GetHealth() const { return _health; }
 		
-		void TakeHit(float distance);
+		void TakeHit(RN::Vector3 position);
 		
 		void Reset();
 		void Update(float delta) override;
