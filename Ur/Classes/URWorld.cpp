@@ -267,9 +267,8 @@ namespace UR
 		{
 			RN::Vector3 pos(random.GetRandomVector3Range(RN::Vector3(-1200.0f), RN::Vector3(1200.0f)));
 			
-			Asteroid *entity = new Asteroid((random.GetRandomInt32()>0)?asteroid1:asteroid2, pos);
+			Asteroid *entity = new Asteroid((random.GetRandomInt32()>0)?asteroid1:asteroid2, pos, RN::Vector3(random.GetRandomFloatRange(1.0f, 10.0f)));
 			entity->SetFlags(entity->GetFlags() | RN::SceneNode::Flags::Static | RN::SceneNode::Flags::NoSave);
-			entity->SetScale(RN::Vector3(random.GetRandomFloatRange(1.0f, 10.0f)));
 			entity->SetRotation(random.GetRandomVector3Range(RN::Vector3(0.0f), RN::Vector3(360.0f)));
 			entity->Release();
 					

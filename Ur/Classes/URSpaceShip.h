@@ -30,6 +30,7 @@ namespace UR
 		
 		float GetSpeed() const;
 		int32 GetHealth() const { return _health; }
+		void Die();
 		
 		uint32 GetKillID() const { return _killID; }
 		
@@ -60,6 +61,8 @@ namespace UR
 
 		int32 _health;
 		uint8 _engineState;
+		
+		RNDeclareMeta(SpaceShip)
 	};
 }
 

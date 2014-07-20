@@ -51,6 +51,8 @@ namespace RN
 			btConstraintSolver *_constraintSolver;
 			btOverlappingPairCallback *_pairCallback;
 			
+			static void SimulationStepTickCallback(btDynamicsWorld *world, btScalar timeStep);
+			
 			std::unordered_set<CollisionObject *> _collisionObjects;
 			
 			RNDeclareMeta(PhysicsWorld)

@@ -11,6 +11,8 @@
 
 namespace UR
 {
+	RNDefineMeta(SpaceShip, RN::Entity)
+	
 	SpaceShip *_localShip = nullptr;
 	
 	SpaceShip::SpaceShip(Client *client) :
@@ -99,6 +101,11 @@ namespace UR
 		
 		if(_health <= 0 && _killID == 0)
 			_killID = clientID;
+	}
+	
+	void SpaceShip::Die()
+	{
+		_health = 0;
 	}
 	
 	void SpaceShip::Reset()

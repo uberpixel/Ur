@@ -31,6 +31,8 @@ namespace UR
 		float _time;
 		uint32 _clientID;
 		RN::bullet::RigidBody *_rigidBody;
+		
+		RNDeclareMeta(Missile)
 	};
 }
 

@@ -17,6 +17,8 @@
 
 namespace UR
 {
+	RNDefineMeta(Missile, RN::Entity)
+	
 	Missile::Missile(uint32 clientID, Packet &packet) :
 		_time(kURMissileFlightTime),
 		_clientID(clientID)

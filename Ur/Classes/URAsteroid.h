@@ -17,7 +17,7 @@ namespace UR
 	class Asteroid : public RN::Entity
 	{
 	public:
-		Asteroid(RN::Model *model, RN::Vector3 position);
+		Asteroid(RN::Model *model, const RN::Vector3 &position, const RN::Vector3 &scale);
 		
 	private:
 		

@@ -39,6 +39,7 @@ namespace RN
 			void SetCollisionFilter(short int filter);
 			void SetCollisionFilterMask(short int mask);
 			void SetMaterial(PhysicsMaterial *material);
+			void SetContactCallback(std::function<void(CollisionObject *)> &&callback);
 			
 			short int GetCollisionFilter() const { return _collisionFilter; }
 			short int GetCollisionFilterMask() const { return _collisionFilterMask; }
@@ -62,6 +63,8 @@ namespace RN
 			Connection *_connection;
 			PhysicsWorld *_owner;
 			PhysicsMaterial *_material;
+			
+			std::function<void(CollisionObject *)> _callback;
 			
 			short int _collisionFilter;
 			short int _collisionFilterMask;
