@@ -211,6 +211,7 @@ namespace UR
 		}
 		_camera->SetSky(sky);
 		_camera->SetClipFar(50000);
+		_camera->SetRenderGroups(RN::Camera::RenderGroups::Group0|RN::Camera::RenderGroups::Group2);
 		RN::Renderer::GetSharedInstance()->SetHDRExposure(1.0f);
 		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(2.5f);
 		
@@ -318,6 +319,11 @@ namespace UR
 			result->RemoveFromWorld();
 			_enemies->RemoveObject(result);
 		}
+	}
+	
+	RN::Array *World::GetEnemies() const
+	{
+		return _enemies;
 	}
 	
 	void World::ReSpawn()

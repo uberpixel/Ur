@@ -18,6 +18,7 @@ namespace UR
 	SpaceShip::SpaceShip(Client *client) :
 		_camera(nullptr),
 		_gamepad(nullptr),
+		_radar(nullptr),
 		_client(client),
 		_health(150),
 		_killID(0),
@@ -43,6 +44,14 @@ namespace UR
 		window->SetSpecularColor(RN::Color(0.05f, 0.05f, 0.05f, 100.0f));
 		window->SetDiffuseColor(RN::Color(0.01f, 0.01f, 0.01f, 0.05f));
 		
+		RN::Material *body = GetModel()->GetMaterialAtIndex(0, 0);
+		body->Define("RN_SPECULARITY");
+		body->SetSpecularColor(RN::Color(0.03f, 0.03f, 0.03f, 10.0f));
+		
+		RN::Material *borders = GetModel()->GetMaterialAtIndex(0, 1);
+		borders->Define("RN_SPECULARITY");
+		borders->SetSpecularColor(RN::Color(0.03f, 0.03f, 0.03f, 150.0f));
+		
 		RN::bullet::PhysicsMaterial *material = new RN::bullet::PhysicsMaterial();
 		material->SetLinearDamping(0.25);
 		material->SetFriction(0.0);
@@ -52,6 +61,8 @@ namespace UR
 		_rigidBody->SetMaterial( material);
 		
 		AddAttachment(_rigidBody);
+		
+		_radar = new Radar();
 		
 		_localShip = this;
 	}
@@ -83,6 +94,11 @@ namespace UR
 	{
 		RN::Vector3 velocity = _rigidBody->GetLinearVelocity();
 		return velocity.GetLength();
+	}
+	
+	RN::Vector3 SpaceShip::GetVelocity() const
+	{
+		return _rigidBody->GetLinearVelocity();
 	}
 	
 	void SpaceShip::SetEngineState(uint8 engine, bool working)
@@ -287,5 +303,16 @@ namespace UR
 			_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
 		
 		RN::Entity::Update(delta);
+	}
+	
+	void SpaceShip::DidUpdate(ChangeSet changeSet)
+	{
+		RN::Entity::DidUpdate(changeSet);
+		if(changeSet == RN::SceneNode::ChangeSet::Position)
+		{
+			RN::Vector3 radarOffset(0.0f, 0.3f, -1.8f);
+			radarOffset = GetWorldRotation().GetRotatedVector(radarOffset);
+			_radar->SetPosition(GetWorldPosition()+radarOffset);
+		}
 	}
 }

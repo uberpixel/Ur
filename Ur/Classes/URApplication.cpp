@@ -38,7 +38,7 @@ namespace UR
 		SetTitle("Ur: GOTY Edition!");
 		
 		RN::Kernel::GetSharedInstance()->SetMaxFPS(60);
-		RN::Window::GetSharedInstance()->ActivateConfiguration(RN::Window::GetSharedInstance()->GetMainScreen()->GetConfigurations()->GetLastObject()->Downcast<RN::WindowConfiguration>(), RN::Window::Mask::Fullscreen);
+//		RN::Window::GetSharedInstance()->ActivateConfiguration(RN::Window::GetSharedInstance()->GetMainScreen()->GetConfigurations()->GetLastObject()->Downcast<RN::WindowConfiguration>(), RN::Window::Mask::Fullscreen);
 		
 		RN::MessageCenter::GetSharedInstance()->AddObserver(kRNInputEventMessage, [this](RN::Message *message) {
 			

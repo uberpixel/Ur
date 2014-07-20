@@ -13,6 +13,7 @@
 #include <RBRigidBody.h>
 
 #include "URClient.h"
+#include "URRadar.h"
 
 namespace UR
 {
@@ -29,6 +30,7 @@ namespace UR
 		bool GetEngineState(uint8 engine);
 		
 		float GetSpeed() const;
+		RN::Vector3 GetVelocity() const;
 		int32 GetHealth() const { return _health; }
 		void Die();
 		
@@ -39,10 +41,14 @@ namespace UR
 		void Reset();
 		void Update(float delta) override;
 		
+	protected:
+		void DidUpdate(ChangeSet changeSet) override;
+		
 	private:
 		RN::Camera *_camera;
 		RN::GamepadDevice *_gamepad;
 		RN::bullet::RigidBody *_rigidBody;
+		Radar *_radar;
 		
 		Client *_client;
 		uint32 _killID;

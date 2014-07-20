@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D5947C63197B62AF00744089 /* URAsteroid.h in Headers */ = {isa = PBXBuildFile; fileRef = D5947C61197B62AF00744089 /* URAsteroid.h */; };
 		D5947C64197B62AF00744089 /* URAsteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5947C62197B62AF00744089 /* URAsteroid.cpp */; };
+		D5947C67197C207900744089 /* URRadar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5947C66197C207900744089 /* URRadar.cpp */; };
 		E9676AC6197A8F620054F01A /* callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676A9F197A8F620054F01A /* callbacks.c */; };
 		E9676AC7197A8F620054F01A /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AA1197A8F620054F01A /* compress.c */; };
 		E9676AC8197A8F620054F01A /* host.c in Sources */ = {isa = PBXBuildFile; fileRef = E9676AAE197A8F620054F01A /* host.c */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		D5947C61197B62AF00744089 /* URAsteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = URAsteroid.h; path = Classes/URAsteroid.h; sourceTree = "<group>"; };
 		D5947C62197B62AF00744089 /* URAsteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URAsteroid.cpp; path = Classes/URAsteroid.cpp; sourceTree = "<group>"; };
+		D5947C65197C206800744089 /* URRadar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URRadar.h; path = Classes/URRadar.h; sourceTree = "<group>"; };
+		D5947C66197C207900744089 /* URRadar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URRadar.cpp; path = Classes/URRadar.cpp; sourceTree = "<group>"; };
 		E9676A9F197A8F620054F01A /* callbacks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callbacks.c; sourceTree = "<group>"; };
 		E9676AA1197A8F620054F01A /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
 		E9676AAE197A8F620054F01A /* host.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = host.c; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				E9BDAE81197B2E5100CF0CF6 /* URExplosion.h */,
 				E9D52B6B197B4AF3002297EB /* URTrailingEffect.cpp */,
 				E9D52B6D197B4AFC002297EB /* URTrailingEffect.h */,
+				D5947C65197C206800744089 /* URRadar.h */,
+				D5947C66197C207900744089 /* URRadar.cpp */,
 			);
 			name = Classes;
 			path = Ur;
@@ -255,6 +260,7 @@
 				E9676ADC197A92630054F01A /* URClient.cpp in Sources */,
 				E9676AD4197A8F620054F01A /* peer.c in Sources */,
 				E9676AD5197A8F620054F01A /* protocol.c in Sources */,
+				D5947C67197C207900744089 /* URRadar.cpp in Sources */,
 				E9676AC6197A8F620054F01A /* callbacks.c in Sources */,
 				E9676AD9197A90DD0054F01A /* URServer.cpp in Sources */,
 				E9676AC8197A8F620054F01A /* host.c in Sources */,
