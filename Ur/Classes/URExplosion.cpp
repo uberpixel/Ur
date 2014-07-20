@@ -143,9 +143,12 @@ namespace UR
 	{
 		_explosionEmitter = new ExplosionEmitter();
 		_smokeEmitter = new SmokeEmitter();
+//		_light = new RN::Light(RN::Light::Type::PointLight);
+//		_light->SetColor(RN::Color(1.0f, 0.7f, 0.5f));
 		
 		AddChild(_explosionEmitter->Autorelease());
 		AddChild(_smokeEmitter->Autorelease());
+//		AddChild(_light->Autorelease());
 	}
 	
 	void Explosion::Update(float delta)
@@ -159,6 +162,8 @@ namespace UR
 		
 		if(_lifetime < 0.0)
 			_smokeEmitter->SetParticlesPerSecond(0);
+		
+//		_light->SetRange(_lifetime*80.0f);
 		
 		if(_lifetime <= -2.0)
 		{

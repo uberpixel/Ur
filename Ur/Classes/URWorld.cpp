@@ -8,6 +8,7 @@
 
 #include "URWorld.h"
 #include "URExplosion.h"
+#include "URAsteroid.h"
 
 namespace UR
 {
@@ -250,24 +251,21 @@ namespace UR
 		RN::Random::MersenneTwister random;
 		random.Seed(0x1024);
 		
-		RN::Model *asteroid = RN::Model::WithFile("Models/Asteroids/asteroid_3.sgm");
-		asteroid->GetMaterialAtIndex(0, 0)->SetAmbientColor(RN::Color::Black());
+		RN::Model *asteroid1 = RN::Model::WithFile("Models/Asteroids/asteroid_3.sgm");
+		asteroid1->GetMaterialAtIndex(0, 0)->SetAmbientColor(RN::Color::Black());
+		
+		RN::Model *asteroid2 = RN::Model::WithFile("Models/Asteroids/asteroid_2.sgm");
+		asteroid2->GetMaterialAtIndex(0, 0)->SetAmbientColor(RN::Color::Black());
 		
 		RN::InstancingNode *asteroidNode = new RN::InstancingNode();
-		asteroidNode->SetModels(RN::Array::WithObjects(asteroid, nullptr));
-		asteroidNode->SetPivot(_camera);
-		asteroidNode->SetFlags(asteroidNode->GetFlags() | RN::SceneNode::Flags::NoSave);
-		asteroidNode->SetMode(RN::InstancingNode::Mode::Thinning | RN::InstancingNode::Mode::Clipping);
-		asteroidNode->SetCellSize(128.0f);
-		asteroidNode->SetClippingRange(1024.0f);
-		asteroidNode->SetThinningRange(512.0f);
+		asteroidNode->SetModels(RN::Array::WithObjects(asteroid1, asteroid2, nullptr));
 		asteroidNode->Release();
 		
-		for(int i = 0; i < 5000; i ++)
+		for(int i = 0; i < 3000; i ++)
 		{
-			RN::Vector3 pos(random.GetRandomFloatRange(-2000.0f, 2000.0f), random.GetRandomFloatRange(-2000.0f, 2000.0f), random.GetRandomFloatRange(-2000.0f, 2000.0f));
+			RN::Vector3 pos(random.GetRandomVector3Range(RN::Vector3(-2200.0f), RN::Vector3(2200.0f)));
 			
-			RN::Entity *entity = new RN::Entity(asteroid, pos);
+			Asteroid *entity = new Asteroid((random.GetRandomInt32()>0)?asteroid1:asteroid2, pos);
 			entity->SetFlags(entity->GetFlags() | RN::SceneNode::Flags::Static | RN::SceneNode::Flags::NoSave);
 			entity->SetScale(RN::Vector3(random.GetRandomFloatRange(1.0f, 10.0f)));
 			entity->SetRotation(random.GetRandomVector3Range(RN::Vector3(0.0f), RN::Vector3(360.0f)));
