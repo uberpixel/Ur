@@ -33,6 +33,12 @@ namespace UR
 		RN::bullet::Shape *shape = RN::bullet::TriangleMeshShape::WithModel(model);
 		
 		SetModel(RN::Model::WithFile("Models/Ship/ship_inside.sgm"));
+		RN::Material *window = GetModel()->GetMaterialAtIndex(0, 2);
+		window->SetBlending(true);
+		window->Define("RN_GLASS");
+		window->Define("RN_SPECULARITY");
+		window->SetSpecularColor(RN::Color(0.05f, 0.05f, 0.05f, 100.0f));
+		window->SetDiffuseColor(RN::Color(0.01f, 0.01f, 0.01f, 0.05f));
 		
 		RN::bullet::PhysicsMaterial *material = new RN::bullet::PhysicsMaterial();
 		material->SetLinearDamping(0.25);
