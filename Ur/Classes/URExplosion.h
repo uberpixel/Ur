@@ -29,6 +29,7 @@ namespace UR
 		float _lifetime;
 		ExplosionEmitter *_explosionEmitter;
 		SmokeEmitter *_smokeEmitter;
+//		RN::Light *_light;
 	};
 }
 
