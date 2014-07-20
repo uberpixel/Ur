@@ -21,7 +21,8 @@ namespace UR
 			ClientConnected,
 			ShotsFired,
 			GoodHit,
-			GoodKill
+			GoodKill,
+			ClientDisconnected
 		};
 		
 		Packet(Type type) :

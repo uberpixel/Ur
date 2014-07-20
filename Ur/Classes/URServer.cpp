@@ -128,6 +128,11 @@ namespace UR
 						
 						RNDebug("Client %d disconnected", client->clientID);
 						
+						Packet packet(Packet::Type::ClientDisconnected);
+						packet.WriteUInt32(client->clientID);
+						
+						BroadcastPacket(packet);
+						
 						delete client;
 						_clients.erase(iterator);
 					}

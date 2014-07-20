@@ -298,6 +298,27 @@ namespace UR
 		return result;
 	}
 	
+	void World::RemoveEnemy(uint32 clientID)
+	{
+		Enemy *result = nullptr;
+		
+		_enemies->Enumerate<Enemy>([&](Enemy *enemy, size_t index, bool &stop) {
+			
+			if(enemy->GetClientID() == clientID)
+			{
+				result = enemy;
+				stop = true;
+			}
+			
+		});
+		
+		if(result)
+		{
+			result->RemoveFromWorld();
+			_enemies->RemoveObject(result);
+		}
+	}
+	
 	void World::ReSpawn()
 	{
 		_ship->Reset();

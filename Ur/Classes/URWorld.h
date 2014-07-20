@@ -38,6 +38,7 @@ namespace UR
 		void Update(float delta) override;
 		
 		Enemy *GetEnemyWithID(uint32 clientID);
+		void RemoveEnemy(uint32 clientID);
 		
 		void ReSpawn();
 		

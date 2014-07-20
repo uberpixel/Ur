@@ -90,6 +90,19 @@ namespace UR
 							
 							break;
 						}
+						case Packet::Type::ClientDisconnected:
+						{
+							uint32 client = packet.ReadUInt32();
+							
+							if(client != _clientID)
+							{
+								RNDebug("Client %d disconnected", client);
+								World::GetSharedInstance()->RemoveEnemy(client);
+							}
+							
+							break;
+						}
+							
 							
 						case Packet::Type::PositionUpdate:
 						{
