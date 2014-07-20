@@ -31,7 +31,9 @@ namespace UR
 		float GetSpeed() const;
 		int32 GetHealth() const { return _health; }
 		
-		void TakeHit(RN::Vector3 position);
+		uint32 GetKillID() const { return _killID; }
+		
+		void TakeHit(const RN::Vector3 &position, uint32 clientID);
 		
 		void Reset();
 		void Update(float delta) override;
@@ -42,6 +44,7 @@ namespace UR
 		RN::bullet::RigidBody *_rigidBody;
 		
 		Client *_client;
+		uint32 _killID;
 		
 		float _maxVelocity;
 		float _maxThrust;

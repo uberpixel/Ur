@@ -18,6 +18,7 @@ namespace UR
 		_gamepad(nullptr),
 		_client(client),
 		_health(150),
+		_killID(0),
 		_maxThrust(5.0),
 		_maxVelocity(500.0),
 		_engineState(0b00001111),
@@ -90,17 +91,21 @@ namespace UR
 			_engineState &= ~(1 << engine);
 	}
 	
-	void SpaceShip::TakeHit(RN::Vector3 position)
+	void SpaceShip::TakeHit(const RN::Vector3 &position, uint32 clientID)
 	{
 		_rigidBody->ApplyImpulse((GetWorldPosition()-position).GetNormalized(250.0f));
 		_damageCooldown = 0.8f;
 		_health -= 40;
+		
+		if(_health <= 0 && _killID == 0)
+			_killID = clientID;
 	}
 	
 	void SpaceShip::Reset()
 	{
 		_rigidBody->SetLinearVelocity(RN::Vector3());
 		_health = 150;
+		_killID = 0;
 	}
 
 	bool SpaceShip::GetEngineState(uint8 engine)

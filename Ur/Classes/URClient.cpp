@@ -133,10 +133,11 @@ namespace UR
 						case Packet::Type::GoodHit:
 						{
 							uint32 client = packet.ReadUInt32();
+							uint32 shooter = packet.ReadUInt32();
 							RN::Vector3 position(packet.ReadFloat(), packet.ReadFloat(), packet.ReadFloat());
 							
 							if(client == _clientID)
-								SpaceShip::GetLocalShip()->TakeHit(position);
+								SpaceShip::GetLocalShip()->TakeHit(position, shooter);
 							
 							Explosion *explosion = new Explosion();
 							explosion->SetPosition(position);
@@ -148,7 +149,12 @@ namespace UR
 						case Packet::Type::GoodKill:
 						{
 							uint32 client = packet.ReadUInt32();
-							RNDebug("Good kill on %d", client);
+							uint32 killer = packet.ReadUInt32();
+							
+							RNDebug("Good kill on %d by %d", client, killer);
+							
+							if(killer == _clientID)
+								World::GetSharedInstance()->TallyKill();
 							
 							RN::Vector3 position(packet.ReadFloat(), packet.ReadFloat(), packet.ReadFloat());
 							

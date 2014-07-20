@@ -42,6 +42,8 @@ namespace UR
 		
 		void ReSpawn();
 		
+		void TallyKill();
+		
 		void AddMissileTracking(Missile *missile);
 		void RemoveMissileTracking(Missile *missile);
 		
@@ -51,6 +53,9 @@ namespace UR
 		RN::PostProcessingPipeline *PPCreateBloomPipeline(RN::Camera *cam);
 		
 		Type _type;
+		
+		int32 _kills;
+		int32 _deaths;
 		
 		Server *_server;
 		Client *_client;

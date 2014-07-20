@@ -22,7 +22,9 @@ namespace UR
 		_gamepad(nullptr),
 		_ship(nullptr),
 		_server(nullptr),
-		_client(nullptr)
+		_client(nullptr),
+		_kills(0),
+		_deaths(0)
 	{
 		RN::MessageCenter::GetSharedInstance()->AddObserver(kRNInputInputDeviceRegistered, [&](RN::Message *message) {
 			
@@ -340,7 +342,13 @@ namespace UR
 		Unlock();
 	}
 	
-	
+	void World::TallyKill()
+	{
+		Lock();
+		_kills ++;
+		Unlock();
+	}
+
 	void World::Update(float delta)
 	{
 		if(_ship->GetHealth() <= 0)
@@ -349,12 +357,17 @@ namespace UR
 			
 			Packet packet(Packet::Type::GoodKill);
 			packet.WriteUInt32(_client->GetClientID());
+			packet.WriteUInt32(_ship->GetKillID());
 			
 			packet.WriteFloat(position.x);
 			packet.WriteFloat(position.y);
 			packet.WriteFloat(position.z);
 			
+			if(_ship->GetKillID() == 0)
+				_kills --;
+			
 			_client->SendPacket(packet);
+			_deaths ++;
 			
 			ReSpawn();
 		}
@@ -381,6 +394,7 @@ namespace UR
 					
 					Packet packet(Packet::Type::GoodHit);
 					packet.WriteUInt32(enemy->GetClientID());
+					packet.WriteUInt32(_client->GetClientID());
 					
 					RN::Vector3 position = missile->GetWorldPosition();
 					
@@ -404,7 +418,7 @@ namespace UR
 		}
 		
 		RN::Vector3 position = _ship->GetWorldPosition();
-		_statsLabel->SetText(RNSTR("Speed: %.2fm/s\nPosition: {%.2f, %.2f, %.2f}\nHealth: %d", _ship->GetSpeed(), position.x, position.y, position.z, _ship->GetHealth()));
+		_statsLabel->SetText(RNSTR("Speed: %.2fm/s\nKills: %d, Deaths: %d\nHealth: %d", _ship->GetSpeed(), _kills, _deaths, position.x, position.y, position.z, _ship->GetHealth()));
 		_gamepad->ExecuteCommand(RNCSTR("light"), RN::Value::WithVector3(RN::Vector3(255.0f, 0.0f, 0.0f).GetLerp(RN::Vector3(0.0f, 255.0f, 0.0f), _ship->GetHealth()*0.0066f)));
 	}
 }
