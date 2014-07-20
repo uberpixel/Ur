@@ -261,9 +261,9 @@ namespace UR
 		asteroidNode->SetModels(RN::Array::WithObjects(asteroid1, asteroid2, nullptr));
 		asteroidNode->Release();
 		
-		for(int i = 0; i < 3000; i ++)
+		for(int i = 0; i < 500; i ++)
 		{
-			RN::Vector3 pos(random.GetRandomVector3Range(RN::Vector3(-2200.0f), RN::Vector3(2200.0f)));
+			RN::Vector3 pos(random.GetRandomVector3Range(RN::Vector3(-1200.0f), RN::Vector3(1200.0f)));
 			
 			Asteroid *entity = new Asteroid((random.GetRandomInt32()>0)?asteroid1:asteroid2, pos);
 			entity->SetFlags(entity->GetFlags() | RN::SceneNode::Flags::Static | RN::SceneNode::Flags::NoSave);
