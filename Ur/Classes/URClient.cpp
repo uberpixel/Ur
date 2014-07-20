@@ -10,6 +10,7 @@
 #include "URWorld.h"
 #include "URMissile.h"
 #include "URSpaceShip.h"
+#include "URExplosion.h"
 
 namespace UR
 {
@@ -128,6 +129,20 @@ namespace UR
 							break;
 						}
 							
+						case Packet::Type::GoodKill:
+						{
+							uint32 client = packet.ReadUInt32();
+							
+							if(client != _clientID)
+							{
+								RN::Vector3 position(packet.ReadFloat(), packet.ReadFloat(), packet.ReadFloat());
+								
+								Explosion *explosion = new Explosion();
+								explosion->SetPosition(position);
+								explosion->Autorelease();
+							}
+						}
+					
 						default:
 							break;
 					}

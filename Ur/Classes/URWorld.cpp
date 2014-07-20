@@ -7,6 +7,7 @@
 //
 
 #include "URWorld.h"
+#include "URExplosion.h"
 
 namespace UR
 {
@@ -231,7 +232,22 @@ namespace UR
 	void World::Update(float delta)
 	{
 		if(_ship->GetHealth() <= 0)
+		{
+			RN::Vector3 position = _ship->GetWorldPosition();
+			
+			Packet packet(Packet::Type::GoodKill);
+			packet.WriteUInt32(_client->GetClientID());
+			
+			packet.WriteFloat(position.x);
+			packet.WriteFloat(position.y);
+			packet.WriteFloat(position.z);
+			
+			Explosion *explosion = new Explosion();
+			explosion->SetPosition(position);
+			explosion->Autorelease();
+			
 			ReSpawn();
+		}
 		
 		
 		if(_server)

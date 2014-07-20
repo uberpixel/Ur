@@ -20,7 +20,8 @@ namespace UR
 			PositionUpdate,
 			ClientConnected,
 			ShotsFired,
-			GoodHit
+			GoodHit,
+			GoodKill
 		};
 		
 		Packet(Type type) :

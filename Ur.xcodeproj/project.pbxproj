@@ -20,6 +20,8 @@
 		E9676ADC197A92630054F01A /* URClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9676ADB197A92630054F01A /* URClient.cpp */; };
 		E9676AE7197AB95A0054F01A /* UREnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9676AE6197AB95A0054F01A /* UREnemy.cpp */; };
 		E9676AE9197AE5810054F01A /* URMissile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9676AE8197AE5810054F01A /* URMissile.cpp */; };
+		E9BDAE80197B2E4200CF0CF6 /* URExplosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9BDAE7F197B2E4200CF0CF6 /* URExplosion.cpp */; };
+		E9D52B6C197B4AF3002297EB /* URTrailingEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9D52B6B197B4AF3002297EB /* URTrailingEffect.cpp */; };
 		E9FA6E861979DB2700113827 /* URApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E851979DB2700113827 /* URApplication.cpp */; };
 		E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E881979DB2700113827 /* URWorld.cpp */; };
 		E9FA6E8D1979DB2700113827 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9FA6E8C1979DB2700113827 /* main.cpp */; };
@@ -47,6 +49,10 @@
 		E9676AE6197AB95A0054F01A /* UREnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UREnemy.cpp; path = Classes/UREnemy.cpp; sourceTree = "<group>"; };
 		E9676AE8197AE5810054F01A /* URMissile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URMissile.cpp; path = Classes/URMissile.cpp; sourceTree = "<group>"; };
 		E9676AEA197AE58E0054F01A /* URMissile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URMissile.h; path = Classes/URMissile.h; sourceTree = "<group>"; };
+		E9BDAE7F197B2E4200CF0CF6 /* URExplosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URExplosion.cpp; path = Classes/URExplosion.cpp; sourceTree = "<group>"; };
+		E9BDAE81197B2E5100CF0CF6 /* URExplosion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URExplosion.h; path = Classes/URExplosion.h; sourceTree = "<group>"; };
+		E9D52B6B197B4AF3002297EB /* URTrailingEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URTrailingEffect.cpp; path = Classes/URTrailingEffect.cpp; sourceTree = "<group>"; };
+		E9D52B6D197B4AFC002297EB /* URTrailingEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URTrailingEffect.h; path = Classes/URTrailingEffect.h; sourceTree = "<group>"; };
 		E9FA6E811979DB2700113827 /* Ur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FA6E851979DB2700113827 /* URApplication.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = URApplication.cpp; path = Classes/URApplication.cpp; sourceTree = "<group>"; };
 		E9FA6E871979DB2700113827 /* URApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URApplication.h; path = Classes/URApplication.h; sourceTree = "<group>"; };
@@ -134,6 +140,10 @@
 				E9676AEA197AE58E0054F01A /* URMissile.h */,
 				D5947C58197B12C900744089 /* URAsteroid.cpp */,
 				D5947C5A197B12DF00744089 /* URAsteroid.h */,
+				E9BDAE7F197B2E4200CF0CF6 /* URExplosion.cpp */,
+				E9BDAE81197B2E5100CF0CF6 /* URExplosion.h */,
+				E9D52B6B197B4AF3002297EB /* URTrailingEffect.cpp */,
+				E9D52B6D197B4AFC002297EB /* URTrailingEffect.h */,
 			);
 			name = Classes;
 			path = Ur;
@@ -238,6 +248,7 @@
 				E9676AC7197A8F620054F01A /* compress.c in Sources */,
 				E9676AD3197A8F620054F01A /* packet.c in Sources */,
 				E9FA6E891979DB2700113827 /* URWorld.cpp in Sources */,
+				E9D52B6C197B4AF3002297EB /* URTrailingEffect.cpp in Sources */,
 				E9676AD2197A8F620054F01A /* list.c in Sources */,
 				D5947C59197B12C900744089 /* URAsteroid.cpp in Sources */,
 				E9676ADC197A92630054F01A /* URClient.cpp in Sources */,
@@ -248,6 +259,7 @@
 				E9676AC8197A8F620054F01A /* host.c in Sources */,
 				E9676AE9197AE5810054F01A /* URMissile.cpp in Sources */,
 				E9FA6E8D1979DB2700113827 /* main.cpp in Sources */,
+				E9BDAE80197B2E4200CF0CF6 /* URExplosion.cpp in Sources */,
 				E9FA6EA4197A019000113827 /* URSpaceShip.cpp in Sources */,
 				E9676AE7197AB95A0054F01A /* UREnemy.cpp in Sources */,
 				E9676AD6197A8F620054F01A /* unix.c in Sources */,

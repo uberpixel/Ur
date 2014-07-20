@@ -9,9 +9,11 @@
 #include "URMissile.h"
 #include "URClient.h"
 #include "URWorld.h"
+#include "URExplosion.h"
+#include "URTrailingEffect.h"
 
 #define kURMissileAngularVelocity 5.0f
-#define kURMissileFlightTime      10.0f
+#define kURMissileFlightTime      4.5f
 
 namespace UR
 {
@@ -71,6 +73,10 @@ namespace UR
 		
 		SetModel(model);
 		AddAttachment(_rigidBody->Autorelease());
+		
+		TrailingEffect *effect = new TrailingEffect();
+		
+		AddChild(effect->Autorelease());
 	}
 	
 	void Missile::Update(float delta)
@@ -81,6 +87,10 @@ namespace UR
 		
 		if(_time <= 0.0f)
 		{
+			Explosion *explosion = new Explosion();
+			explosion->SetPosition(GetWorldPosition());
+			explosion->Autorelease();
+			
 			RemoveFromWorld();
 			World::GetSharedInstance()->RemoveMissileTracking(this);
 			

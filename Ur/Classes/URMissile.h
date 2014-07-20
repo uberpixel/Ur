@@ -24,6 +24,7 @@ namespace UR
 		
 		void Update(float delta) override;
 		
+		
 	private:
 		void Initialize(bool direction, const RN::Vector3 &initalVelocity, const RN::Vector3 &spawnpoint, const RN::Quaternion &rotation);
 		
