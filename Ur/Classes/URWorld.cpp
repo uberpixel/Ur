@@ -161,7 +161,7 @@ namespace UR
 		{
 			case Type::Client:
 				_client = new Client(1337);
-				_client->Connect("169.254.26.208");
+				_client->Connect("188.109.219.138");
 				break;
 				
 			case Type::Server:
@@ -212,6 +212,7 @@ namespace UR
 		_camera->SetSky(sky);
 		_camera->SetClipFar(50000);
 		_camera->SetRenderGroups(RN::Camera::RenderGroups::Group0|RN::Camera::RenderGroups::Group2);
+		_camera->GetLightManager()->Downcast<RN::ClusteredLightManager>()->SetClusterSize(RN::Vector3(256, 256, 1000));
 		RN::Renderer::GetSharedInstance()->SetHDRExposure(1.0f);
 		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(2.5f);
 		
