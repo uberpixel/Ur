@@ -90,7 +90,7 @@ namespace UR
 				RN::Vector3 diff = enemy->GetWorldPosition()-GetWorldPosition();
 				if(diff.GetLength() < 800.0f)
 				{
-					_ships[index+1]->SetWorldPosition(GetWorldPosition()+diff/800.0f);
+					_ships[index+1]->SetWorldPosition(GetWorldPosition()+diff/800.0f*GetBoundingSphere().radius);
 					_ships[index+1]->SetWorldRotation(enemy->GetWorldRotation());
 					_ships[index+1]->SetFlags(_ships[index+1]->GetFlags()&~RN::SceneNode::Flags::Hidden);
 				}

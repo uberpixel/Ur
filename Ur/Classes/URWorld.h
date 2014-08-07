@@ -11,6 +11,7 @@
 
 #include <Rayne/Rayne.h>
 #include <RBPhysicsWorld.h>
+#include <RALAudioWorld.h>
 
 #include "URSpaceShip.h"
 #include "UREnemy.h"
@@ -67,6 +68,7 @@ namespace UR
 		RN::Random::MersenneTwister _random;
 		
 		RN::bullet::PhysicsWorld *_physicsWorld;
+		RN::openal::AudioWorld *_audioWorld;
 		
 		SpaceShip *_ship;
 		

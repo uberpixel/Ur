@@ -356,16 +356,21 @@
 					/usr/local/include/rayne/,
 					"\"$(SRCROOT)/Ur/Resources/modules/bullet/include\"/**",
 					"\"$(SRCROOT)/Ur/Vendor/enet/include\"",
+					"\"$(SRCROOT)/Ur/Resources/modules/openal/include\"",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/lib/,
-					"\"$(SRCROOT)/Ur/Resources/modules/bullet\"",
+					"$(PROJECT_DIR)/Ur/Resources/modules/openal",
+					"$(PROJECT_DIR)/Ur/Resources/modules/bullet",
 				);
 				OTHER_LDFLAGS = (
 					"-lRayne",
 					"-lrayne-bullet",
+					"-lrayne-openal",
+					"-lopenal",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -386,16 +391,21 @@
 					/usr/local/include/rayne/,
 					"\"$(SRCROOT)/Ur/Resources/modules/bullet/include\"/**",
 					"\"$(SRCROOT)/Ur/Vendor/enet/include\"",
+					"\"$(SRCROOT)/Ur/Resources/modules/openal/include\"",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/lib/,
-					"\"$(SRCROOT)/Ur/Resources/modules/bullet\"",
+					"$(PROJECT_DIR)/Ur/Resources/modules/openal",
+					"$(PROJECT_DIR)/Ur/Resources/modules/bullet",
 				);
 				OTHER_LDFLAGS = (
 					"-lRayne",
 					"-lrayne-bullet",
+					"-lrayne-openal",
+					"-lopenal",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

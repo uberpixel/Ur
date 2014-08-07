@@ -39,6 +39,9 @@ namespace UR
 			ActivateGamepad(device);
 		});
 		
+		_audioWorld = new RN::openal::AudioWorld();
+		AddAttachment(_audioWorld);
+		
 		_sharedWorld = this;
 	}
 	
@@ -161,7 +164,7 @@ namespace UR
 		{
 			case Type::Client:
 				_client = new Client(1337);
-				_client->Connect("188.109.219.138");
+				_client->Connect("localhost");
 				break;
 				
 			case Type::Server:
@@ -248,6 +251,14 @@ namespace UR
 		_statsLabel->SetNumberOfLines(0);
 		
 		_hudWidget->GetContentView()->AddSubview(_statsLabel);
+		
+		RN::openal::AudioListener *audioListener = new RN::openal::AudioListener();
+		_camera->AddAttachment(audioListener);
+		
+		RN::AudioResource *audio = RN::AudioResource::WithFile("Audio/spaceship-ambience.ogg");
+		_audioWorld->PlaySound(audio);
+		RN::openal::AudioSource *audioSource = _audioWorld->PlaySound(audio);
+		audioSource->SetRepeat(true);
 	}
 	
 	void World::GenerateAsteroids()

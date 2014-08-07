@@ -24,13 +24,14 @@ namespace UR
 			if(other->GetParent()->IsKindOfClass(SpaceShip::GetMetaClass()))
 			{
 				SpaceShip *ship = other->GetParent()->Downcast<SpaceShip>();
-				if(ship->GetSpeed() > 20.0f)
+				RN::Vector3 dir = GetWorldPosition()-ship->GetWorldPosition();
+				if(dir.GetNormalized().GetDotProduct(ship->GetVelocity()) > 20.0f)
 					ship->Die();
 			}
 			
 			if(other->GetParent()->IsKindOfClass(Missile::GetMetaClass()))
 			{
-				Missile *missile = other->GetParent()->Downcast<Missile>();
+				__unused Missile *missile = other->GetParent()->Downcast<Missile>();
 				
 			}
 		});
