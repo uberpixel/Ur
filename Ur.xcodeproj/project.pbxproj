@@ -370,7 +370,7 @@
 					"-lRayne",
 					"-lrayne-bullet",
 					"-lrayne-openal",
-					"-lopenal",
+					"-lopenal.1.15.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -405,7 +405,7 @@
 					"-lRayne",
 					"-lrayne-bullet",
 					"-lrayne-openal",
-					"-lopenal",
+					"-lopenal.1.15.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

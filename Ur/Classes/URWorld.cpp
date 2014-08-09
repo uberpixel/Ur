@@ -247,7 +247,7 @@ namespace UR
 		
 		_statsLabel = new RN::UI::Label();
 		_statsLabel->SetFrame(RN::Rect(0.0f, 0.0f, 220.0f, 60).Inset(5.0f, 5.0f));
-		_statsLabel->SetTextColor(RN::UI::Color::WhiteColor());
+		_statsLabel->SetTextColor(RN::UI::Color::White());
 		_statsLabel->SetNumberOfLines(0);
 		
 		_hudWidget->GetContentView()->AddSubview(_statsLabel);
