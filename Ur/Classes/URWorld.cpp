@@ -24,7 +24,8 @@ namespace UR
 		_server(nullptr),
 		_client(nullptr),
 		_kills(0),
-		_deaths(0)
+		_deaths(0),
+		_hmd(nullptr)
 	{
 		RN::MessageCenter::GetSharedInstance()->AddObserver(kRNInputInputDeviceRegistered, [&](RN::Message *message) {
 			
@@ -204,18 +205,51 @@ namespace UR
 		AddAttachment(_physicsWorld);
 		
 		// Camera and sky
-		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults&~RN::Camera::Flags::UseFog);
-		_camera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
-		PPCreateBloomPipeline(_camera);
 		RN::Model *sky = RN::Model::WithSkyCube("Sky/Skybox360 002 Up.png", "Sky/Skybox360 002 Down.png", "Sky/Skybox360 002 Left.png", "Sky/Skybox360 002 Right.png", "Sky/Skybox360 002 Back.png", "Sky/Skybox360 002 Front.png");
 		for(int i = 0; i < 6; i++)
 		{
 			sky->GetMaterialAtIndex(0, i)->SetAmbientColor(RN::Color(6.0f, 6.0f, 6.0f, 1.0f));
 		}
-		_camera->SetSky(sky);
-		_camera->SetClipFar(50000);
-		_camera->SetRenderGroups(RN::Camera::RenderGroups::Group0|RN::Camera::RenderGroups::Group2);
-		_camera->GetLightManager()->Downcast<RN::ClusteredLightManager>()->SetClusterSize(RN::Vector3(256, 256, 1000));
+		
+		// Sun
+		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
+		sun->SetColor(RN::Color(1.0f, 0.9f, 0.6f));
+		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
+		
+		if(_hmd)
+		{
+			RO::Camera *tempCamera = new RO::Camera(RN::Texture::Format::RGB16F);
+			tempCamera->SetHMD(_hmd);
+			tempCamera->SetAmbientColor(RN::Color::WithHSV(0.0f, 0.0f, 1.5f));
+			tempCamera->GetLeftCamera()->SetSky(sky);
+			tempCamera->GetRightCamera()->SetSky(sky);
+			tempCamera->GetLeftCamera()->SetClipFar(50000);
+			tempCamera->GetRightCamera()->SetClipFar(50000);
+			
+			_camera = tempCamera;
+		}
+		else
+		{
+			
+			RN::Camera *tempCamera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults&~RN::Camera::Flags::UseFog);
+			tempCamera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
+			PPCreateBloomPipeline(tempCamera);
+			tempCamera->SetSky(sky);
+			tempCamera->SetClipFar(50000);
+			tempCamera->SetRenderGroups(RN::Camera::RenderGroups::Group0|RN::Camera::RenderGroups::Group2);
+			tempCamera->GetLightManager()->Downcast<RN::ClusteredLightManager>()->SetClusterSize(RN::Vector3(256, 256, 1000));
+			
+			RN::ShadowParameter shadowParameter(tempCamera, 2048);
+			shadowParameter.distanceBlendFactor = 0.00001f;
+			shadowParameter.splits[0].updateInterval = 1;
+			shadowParameter.splits[1].updateInterval = 1;
+			shadowParameter.splits[2].updateInterval = 1;
+			shadowParameter.splits[3].updateInterval = 1;
+			sun->ActivateShadows(shadowParameter);
+			
+			_camera = tempCamera;
+		}
+		
 		RN::Renderer::GetSharedInstance()->SetHDRExposure(1.0f);
 		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(2.5f);
 		
@@ -225,18 +259,6 @@ namespace UR
 		_ship->SetGamepad(_gamepad);
 		
 		ReSpawn();
-		
-		// Sun
-		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
-		sun->SetColor(RN::Color(1.0f, 0.9f, 0.6f));
-		sun->SetRotation(RN::Vector3(117.0f, 190.0f, 5.0f));
-		RN::ShadowParameter shadowParameter(_camera, 2048);
-		shadowParameter.distanceBlendFactor = 0.00001f;
-		shadowParameter.splits[0].updateInterval = 1;
-		shadowParameter.splits[1].updateInterval = 1;
-		shadowParameter.splits[2].updateInterval = 1;
-		shadowParameter.splits[3].updateInterval = 1;
-		sun->ActivateShadows(shadowParameter);
 		
 		// Spawn asteroids
 		GenerateAsteroids();
@@ -438,5 +460,13 @@ namespace UR
 		
 		if(_gamepad)
 			_gamepad->ExecuteCommand(RNCSTR("light"), RN::Value::WithVector3(RN::Vector3(255.0f, 0.0f, 0.0f).GetLerp(RN::Vector3(0.0f, 255.0f, 0.0f), _ship->GetHealth()*0.0066f)));
+	}
+	
+	void World::SetHMD(RO::HMD *hmd)
+	{
+		if(_hmd)
+			return;
+		
+		_hmd = hmd;
 	}
 }

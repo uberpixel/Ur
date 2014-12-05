@@ -12,6 +12,7 @@
 #include <Rayne/Rayne.h>
 #include <RBPhysicsWorld.h>
 #include <RALAudioWorld.h>
+#include <ROCamera.h>
 
 #include "URSpaceShip.h"
 #include "UREnemy.h"
@@ -49,6 +50,8 @@ namespace UR
 		void AddMissileTracking(Missile *missile);
 		void RemoveMissileTracking(Missile *missile);
 		
+		void SetHMD(RO::HMD *hmd);
+		
 	private:
 		void ActivateGamepad(RN::GamepadDevice *gamepad);
 		void GenerateAsteroids();
@@ -62,7 +65,8 @@ namespace UR
 		Server *_server;
 		Client *_client;
 		
-		RN::Camera *_camera;
+		RO::HMD *_hmd;
+		RN::SceneNode *_camera;
 		RN::GamepadDevice *_gamepad;
 		
 		RN::Random::MersenneTwister _random;

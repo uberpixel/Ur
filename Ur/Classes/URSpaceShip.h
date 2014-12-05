@@ -24,7 +24,7 @@ namespace UR
 		
 		static SpaceShip *GetLocalShip();
 		
-		void SetCamera(RN::Camera *camera);
+		void SetCamera(RN::SceneNode *camera);
 		void SetGamepad(RN::GamepadDevice *gamepad);
 		void SetEngineState(uint8 engine, bool working);
 		bool GetEngineState(uint8 engine);
@@ -42,10 +42,10 @@ namespace UR
 		void Update(float delta) override;
 		
 	protected:
-		void DidUpdate(ChangeSet changeSet) override;
+//		void DidUpdate(ChangeSet changeSet) override;
 		
 	private:
-		RN::Camera *_camera;
+		RN::SceneNode *_camera;
 		RN::GamepadDevice *_gamepad;
 		RN::bullet::RigidBody *_rigidBody;
 		Radar *_radar;

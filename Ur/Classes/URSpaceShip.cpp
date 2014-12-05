@@ -58,11 +58,11 @@ namespace UR
 		material->SetAngularDamping(0.9);
 		
 		_rigidBody = new RN::bullet::RigidBody(shape, 10.0f);
-		_rigidBody->SetMaterial( material);
+		_rigidBody->SetMaterial(material);
 		
 		AddAttachment(_rigidBody);
 		
-		_radar = new Radar();
+//		_radar = new Radar();
 		
 		_localShip = this;
 	}
@@ -73,7 +73,7 @@ namespace UR
 	}
 	
 	
-	void SpaceShip::SetCamera(RN::Camera *camera)
+	void SpaceShip::SetCamera(RN::SceneNode *camera)
 	{
 		if(_camera)
 			_camera->RemoveFromParent();
@@ -84,6 +84,7 @@ namespace UR
 		_camera->SetPosition(RN::Vector3(0.0f, 0.8f, -0.8f));
 		_camera->SetRotation(RN::Vector3(0.0f, -5.0f, 0.0f));
 	}
+	
 	void SpaceShip::SetGamepad(RN::GamepadDevice *gamepad)
 	{
 		_gamepad = gamepad;
@@ -302,10 +303,12 @@ namespace UR
 		if(_gamepad)
 			_gamepad->ExecuteCommand(RNCSTR("rumble"), RN::Number::WithUint8(rumble));
 		
+		RNDebug("Ship: %u", GetLastFrame());
+		
 		RN::Entity::Update(delta);
 	}
 	
-	void SpaceShip::DidUpdate(ChangeSet changeSet)
+/*	void SpaceShip::DidUpdate(ChangeSet changeSet)
 	{
 		RN::Entity::DidUpdate(changeSet);
 		if(changeSet == RN::SceneNode::ChangeSet::Position)
@@ -314,5 +317,5 @@ namespace UR
 			radarOffset = GetWorldRotation().GetRotatedVector(radarOffset);
 			_radar->SetPosition(GetWorldPosition()+radarOffset);
 		}
-	}
+	}*/
 }

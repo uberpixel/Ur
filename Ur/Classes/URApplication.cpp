@@ -28,7 +28,16 @@ namespace UR
 	{
 		RN::MessageCenter::GetSharedInstance()->RemoveObserver(this);
 		
-		RN::World *world = new World(World::Type::Server);
+		UR::World *world = new World(World::Type::Server);
+		
+		RO::HMD *hmd = RO::System::GetSharedInstance()->GetHMD(0);
+		if(hmd)
+		{
+			hmd->SetAsDisplay(false);
+		}
+		
+		world->SetHMD(hmd);
+		
 		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
 	}
 	

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5412C5E1A313C3A00D66357 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5412C5D1A313C3A00D66357 /* Foundation.framework */; };
+		D5412C601A313C4900D66357 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5412C5F1A313C4900D66357 /* OpenGL.framework */; };
+		D5412C621A313C6200D66357 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5412C611A313C6200D66357 /* CoreGraphics.framework */; };
+		D5412C641A313C9300D66357 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5412C631A313C9300D66357 /* IOKit.framework */; };
 		D5947C63197B62AF00744089 /* URAsteroid.h in Headers */ = {isa = PBXBuildFile; fileRef = D5947C61197B62AF00744089 /* URAsteroid.h */; };
 		D5947C64197B62AF00744089 /* URAsteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5947C62197B62AF00744089 /* URAsteroid.cpp */; };
 		D5947C67197C207900744089 /* URRadar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5947C66197C207900744089 /* URRadar.cpp */; };
@@ -32,6 +36,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D5412C5D1A313C3A00D66357 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D5412C5F1A313C4900D66357 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		D5412C611A313C6200D66357 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D5412C631A313C9300D66357 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		D5947C61197B62AF00744089 /* URAsteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = URAsteroid.h; path = Classes/URAsteroid.h; sourceTree = "<group>"; };
 		D5947C62197B62AF00744089 /* URAsteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URAsteroid.cpp; path = Classes/URAsteroid.cpp; sourceTree = "<group>"; };
 		D5947C65197C206800744089 /* URRadar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URRadar.h; path = Classes/URRadar.h; sourceTree = "<group>"; };
@@ -75,6 +83,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5412C641A313C9300D66357 /* IOKit.framework in Frameworks */,
+				D5412C621A313C6200D66357 /* CoreGraphics.framework in Frameworks */,
+				D5412C601A313C4900D66357 /* OpenGL.framework in Frameworks */,
+				D5412C5E1A313C3A00D66357 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +120,10 @@
 		E9FA6E771979DB2700113827 = {
 			isa = PBXGroup;
 			children = (
+				D5412C631A313C9300D66357 /* IOKit.framework */,
+				D5412C611A313C6200D66357 /* CoreGraphics.framework */,
+				D5412C5F1A313C4900D66357 /* OpenGL.framework */,
+				D5412C5D1A313C3A00D66357 /* Foundation.framework */,
 				E9FA6E841979DB2700113827 /* Classes */,
 				E9FA6E8B1979DB2700113827 /* Supporting files */,
 				E9676A9D197A8F620054F01A /* Vendor */,
@@ -358,6 +374,7 @@
 					"\"$(SRCROOT)/Ur/Vendor/enet/include\"",
 					"\"$(SRCROOT)/Ur/Resources/modules/openal/include\"",
 					/usr/local/include,
+					"\"$(SRCROOT)/Ur/Resources/modules/oculus/include\"",
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -365,12 +382,14 @@
 					/usr/local/lib/,
 					"$(PROJECT_DIR)/Ur/Resources/modules/openal",
 					"$(PROJECT_DIR)/Ur/Resources/modules/bullet",
+					"\"$(SRCROOT)/Ur/Resources/modules/oculus\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lRayne",
 					"-lrayne-bullet",
 					"-lrayne-openal",
 					"-lopenal.1.15.1",
+					"-lrayne-oculus",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -393,6 +412,7 @@
 					"\"$(SRCROOT)/Ur/Vendor/enet/include\"",
 					"\"$(SRCROOT)/Ur/Resources/modules/openal/include\"",
 					/usr/local/include,
+					"\"$(SRCROOT)/Ur/Resources/modules/oculus/include\"",
 				);
 				INFOPLIST_FILE = "Ur/Supporting files/Ur-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -400,12 +420,14 @@
 					/usr/local/lib/,
 					"$(PROJECT_DIR)/Ur/Resources/modules/openal",
 					"$(PROJECT_DIR)/Ur/Resources/modules/bullet",
+					"\"$(SRCROOT)/Ur/Resources/modules/oculus\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lRayne",
 					"-lrayne-bullet",
 					"-lrayne-openal",
 					"-lopenal.1.15.1",
+					"-lrayne-oculus",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
