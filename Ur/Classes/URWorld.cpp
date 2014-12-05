@@ -256,7 +256,6 @@ namespace UR
 		_camera->AddAttachment(audioListener);
 		
 		RN::AudioResource *audio = RN::AudioResource::WithFile("Audio/spaceship-ambience.ogg");
-		_audioWorld->PlaySound(audio);
 		RN::openal::AudioSource *audioSource = _audioWorld->PlaySound(audio);
 		audioSource->SetRepeat(true);
 	}
