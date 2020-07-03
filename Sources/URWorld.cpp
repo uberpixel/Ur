@@ -482,4 +482,18 @@ namespace UR
 		
 		_hmd = hmd;
 	}*/
+
+    RN::Model *World::MakeDeepCopy(RN::Model *model) const
+    {
+        RN::Model *result = model->Copy();
+        
+        RN::Model::LODStage *lodStage = result->GetLODStage(0);
+        for(int i = 0; i < lodStage->GetCount(); i++)
+        {
+            RN::Material *material = lodStage->GetMaterialAtIndex(i)->Copy();
+            lodStage->ReplaceMaterial(material->Autorelease(), i);
+        }
+        
+        return result->Autorelease();
+    }
 }

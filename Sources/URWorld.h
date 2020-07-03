@@ -53,6 +53,7 @@ namespace UR
 		void RemoveMissileTracking(Missile *missile);
 		
 		//void SetHMD(RO::HMD *hmd);
+        RN::Model *MakeDeepCopy(RN::Model *model) const;
 		
 	private:
 		//void ActivateGamepad(RN::GamepadDevice *gamepad);

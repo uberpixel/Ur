@@ -68,14 +68,15 @@ namespace UR
         AddAttachment(_rigidBody->Autorelease());
         World::GetSharedInstance()->GetPhysicsWorld()->InsertCollisionObject(_rigidBody);
 		
-//		_radar = new Radar();
-		
-		_localShip = this;
+        _localShip = this;
+        
+		_radar = new Radar();
+        AddChild(_radar->Autorelease());
 	}
 
     SpaceShip::~SpaceShip()
     {
-        RNDebug("hmpf");
+        
     }
 	
 	SpaceShip *SpaceShip::GetLocalShip()
@@ -320,14 +321,17 @@ namespace UR
 		RN::Entity::Update(delta);
 	}
 	
-/*	void SpaceShip::DidUpdate(ChangeSet changeSet)
+	void SpaceShip::DidUpdate(ChangeSet changeSet)
 	{
+        if(!_radar) return;
+        
 		RN::Entity::DidUpdate(changeSet);
 		if(changeSet == RN::SceneNode::ChangeSet::Position)
 		{
 			RN::Vector3 radarOffset(0.0f, 0.3f, -1.8f);
 			radarOffset = GetWorldRotation().GetRotatedVector(radarOffset);
-			_radar->SetPosition(GetWorldPosition()+radarOffset);
+			_radar->SetWorldPosition(GetWorldPosition()+radarOffset);
+            _radar->SetWorldRotation(RN::Quaternion());
 		}
-	}*/
+	}
 }

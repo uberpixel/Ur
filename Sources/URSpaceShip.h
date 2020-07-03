@@ -43,7 +43,7 @@ namespace UR
 		void Update(float delta) override;
 		
 	protected:
-//		void DidUpdate(ChangeSet changeSet) override;
+		void DidUpdate(ChangeSet changeSet) override;
 		
 	private:
 		RN::SceneNode *_camera;
