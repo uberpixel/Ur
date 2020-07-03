@@ -1,0 +1,16 @@
+{
+	"RNApplication": "Ur",
+	"RNSearchPaths":
+	[
+		"./Resources"
+	],
+	"RNModules":
+	[
+		"Modules/RayneD3D12",
+		"Modules/RayneMetal",
+		"Modules/RayneVulkan",
+		"Modules/RayneOpenAL",
+		"Modules/RayneOgg",
+		"Modules/RayneAssimp"
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"bundle-id": "com.slindev.ur",
+	"name": "Ur",
+	"build-directory": "Builds",
+	"release-directory": "Releases",
+	"cmake-build-type": "Release",
+	"cmake-parameters": "",
+	"cmake-targets~android":
+	[
+		"Rayne",
+		"RayneOgg",
+		"RayneBullet",
+		"RayneUI",
+		"RayneOpenAL",
+		"RayneENet",
+		"RayneVulkan",
+		"RayneVR",
+		"RayneOculusMobile",
+		"zlibstatic",
+		"jansson",
+		"png_static",
+		"Ur"
+	],
+	"permissions~android":
+	[
+		"android.permission.INTERNET",
+		"android.permission.ACCESS_NETWORK_STATE"
+	],
+	"keystore~android": "../../AndroidReleaseKeyStore",
+	"appinfo-file-oculus": "Other/appinfo-oculus.json",
+	"dependencies":
+	{
+		"Vendor/OculusPlatform": "https://securecdn.oculus.com/binaries/download/?id=1402982696492095"
+	}
+}
