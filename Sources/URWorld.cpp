@@ -211,7 +211,7 @@ namespace UR
         RN::Model *sky = RN::Model::WithSkycube(RNCSTR("Sky/Skybox360 002 Left.png"), RNCSTR("Sky/Skybox360 002 Front.png"), RNCSTR("Sky/Skybox360 002 Right.png"), RNCSTR("Sky/Skybox360 002 Back.png"), RNCSTR("Sky/Skybox360 002 Up.png"), RNCSTR("Sky/Skybox360 002 Down.png"));
         RN::Entity *skyEntity = new RN::Entity(sky);
         skyEntity->SetScale(100000.0f);
-        skyEntity->AddFlags(RN::Entity::Flags::DrawLate);
+		skyEntity->SetRenderPriority(RN::SceneNode::RenderPriority::RenderSky);
         AddNode(skyEntity->Autorelease());
 		
 		// Sun

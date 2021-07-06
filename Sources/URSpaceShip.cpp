@@ -35,9 +35,9 @@ namespace UR
 		_damageCooldown(0.0)
 	{
 		RN::Model *model = RN::Model::WithName(RNCSTR("Models/Ship/ship_outside.sgm"));
-        
-        //Should be drawn early cause it covers most of the screen, but the window needs to be drawn late. Would have to split it off or allow prioritizing per mesh/material
-        AddFlags(RN::Entity::Flags::DrawLate);
+
+		//Should be drawn early cause it covers most of the screen, but the window needs to be drawn late. Would have to split it off or allow prioritizing per mesh/material
+		SetRenderPriority(RN::SceneNode::RenderPriority::RenderLate);
 		
 		RN::BulletShape *shape = RN::BulletTriangleMeshShape::WithModel(model);
 		

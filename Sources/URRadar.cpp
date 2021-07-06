@@ -13,7 +13,7 @@ namespace UR
 {
 	Radar::Radar()
 	{
-        AddFlags(RN::Entity::Flags::DrawLate);
+		SetRenderPriority(RN::SceneNode::RenderPriority::RenderLate);
         
 		RN::Model *model = RN::Model::WithName(RNCSTR("Models/Ship/ship_radar.sgm"));
         RN::Model::LODStage *lodStage = model->GetLODStage(0);
@@ -47,7 +47,7 @@ namespace UR
         lodStage->GetMaterialAtIndex(0)->SetDiffuseColor(RN::Color::Gray());
         lodStage->GetMaterialAtIndex(0)->SetDiffuseColor(RN::Color::Gray());
         RN::Entity *ship = new RN::Entity(shipModelWhite);
-        ship->AddFlags(RN::Entity::Flags::DrawLate);
+		ship->SetRenderPriority(RN::SceneNode::RenderPriority::RenderLate);
         ship->SetScale(RN::Vector3(0.005f));
 		_ships.push_back(ship);
         AddChild(ship->Autorelease());
@@ -63,7 +63,7 @@ namespace UR
 		if(_ships.size() <= World::GetSharedInstance()->GetEnemies()->GetCount())
 		{
             RN::Entity *ship = new RN::Entity(_shipModel);
-            ship->AddFlags(RN::Entity::Flags::DrawLate);
+			ship->SetRenderPriority(RN::SceneNode::RenderPriority::RenderLate);
 			_ships.push_back(ship);
             AddChild(ship->Autorelease());
 			_ships.back()->SetScale(RN::Vector3(0.005f));
